@@ -22,7 +22,7 @@
       Total Cash collected
     </td>
     <td>
-      $<%= @day.closed? ? cash_received(@day) : '-' %>
+      $<%= @day.closed? ? cash_received(@day) : ' -' %>
     </td>
   </tr>
   <tr>
@@ -30,7 +30,7 @@
       Discrepancy
     </td>
     <td>
-      $<%= @day.closed? ? cash_discrepancy(@day) : '-' %>
+      $<%= @day.closed? ? cash_discrepancy(@day) : ' -' %>
     </td>
   </tr>
 

@@ -80,7 +80,7 @@ class DaysController < ApplicationController
         end
       end
     end
-    redirect_to '/'
+    redirect_to summary_day_path(@day)
   end
 
   private
