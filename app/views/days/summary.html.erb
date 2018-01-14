@@ -1,11 +1,40 @@
 <h1>Summary for <%= day_display(@day) %></h1>
 
-<p>
-  Transactions: <%= @day.sales.count %>
-</p>
-<p>
-  Total Sales = $<%= '%.2f' % (@day.cash_end - @day.cash_start).round(2) %>
-</p>
+<table class="summary_table">
+  <tr>
+    <td>
+      Transactions
+    </td>
+    <td>
+      <%= @day.sales.count %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Total Sales
+    </td>
+    <td>
+      $<%= total_sales(@day) %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Total Cash collected
+    </td>
+    <td>
+      $<%= @day.closed? ? cash_received(@day) : '-' %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Discrepancy
+    </td>
+    <td>
+      $<%= @day.closed? ? cash_discrepancy(@day) : '-' %>
+    </td>
+  </tr>
+
+</table>
 
 <table class="summary_table">
   <tr>
@@ -38,10 +67,16 @@
       Inventory Item
     </th>
     <th>
-      Start
+      Start Count
     </th>
     <th>
-      End
+      End Count
+    </th>
+    <th>
+      Sold
+    </th>
+    <th>
+      Discrepancy
     </th>
   </tr>
   <tr>
@@ -52,7 +87,13 @@
       <%= @day.small_start %>
     </td>
     <td>
-      <%= @day.small_end %>
+      <%= @day.closed? ? @day.small_end : '-' %>
+    </td>
+    <td>
+      <%= inventory_used(@day, 'small') %>
+    </td>
+    <td>
+      <%= inventory_discrepancy(@day, 'small') %>
     </td>
   </tr>
   <tr>
@@ -63,7 +104,13 @@
       <%= @day.large_start %>
     </td>
     <td>
-      <%= @day.large_end %>
+      <%= @day.closed? ? @day.large_end : '-' %>
+    </td>
+    <td>
+      <%= inventory_used(@day, 'large') %>
+    </td>
+    <td>
+      <%= inventory_discrepancy(@day, 'large') %>
     </td>
   </tr>
   <tr>
@@ -74,7 +121,13 @@
       <%= @day.bottle_start %>
     </td>
     <td>
-      <%= @day.bottle_end %>
+      <%= @day.closed? ? @day.bottle_end : '-' %>
+    </td>
+    <td>
+      <%= inventory_used(@day, 'bottle') %>
+    </td>
+    <td>
+      <%= inventory_discrepancy(@day, 'bottle') %>
     </td>
   </tr>
   <tr>
@@ -85,7 +138,13 @@
       <%= @day.hot_small_start %>
     </td>
     <td>
-      <%= @day.hot_small_end %>
+      <%= @day.closed? ? @day.hot_small_end : '-' %>
+    </td>
+    <td>
+      <%= inventory_used(@day, 'hot_small') %>
+    </td>
+    <td>
+      <%= inventory_discrepancy(@day, 'hot_small') %>
     </td>
   </tr>
   <tr>
@@ -96,7 +155,13 @@
       <%= @day.hot_medium_start %>
     </td>
     <td>
-      <%= @day.hot_medium_end %>
+      <%= @day.closed? ? @day.hot_medium_end : '-' %>
+    </td>
+    <td>
+      <%= inventory_used(@day, 'hot_medium') %>
+    </td>
+    <td>
+      <%= inventory_discrepancy(@day, 'hot_medium') %>
     </td>
   </tr>
 </table>

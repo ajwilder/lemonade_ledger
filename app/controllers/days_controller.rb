@@ -23,12 +23,6 @@ class DaysController < ApplicationController
         @day.employees << employee
       end
     end
-    @day.large_end = @day.large_start
-    @day.small_end = @day.small_start
-    @day.bottle_end = @day.bottle_start
-    @day.hot_small_end = @day.hot_small_start
-    @day.hot_medium_end = @day.hot_medium_start
-    @day.cash_end = @day.cash_start
     if @day.save
       cookies.signed[:day] = { value:
         @day.id, expires: 12.hours.from_now }
@@ -46,6 +40,7 @@ class DaysController < ApplicationController
 
   def update
     @day = Day.find(params[:id])
+    @day.update_attributes()
   end
 
   def summary
@@ -67,14 +62,35 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
   end
 
-  def close
+  def close_page
     @day = Day.find(params[:id])
-  end 
+  end
+
+  def close
+    @day = Day.find(params[:day][:id])
+    @day.update_attributes(close_day_params)
+    @item_sales = {}
+    @day.sales.each do |sale|
+      items = sale.items
+      items.each do |item|
+        if @item_sales.key?(item)
+          @item_sales[item] += 1
+        else
+          @item_sales[item] = 1
+        end
+      end
+    end
+    redirect_to '/'
+  end
 
   private
 
     def new_day_params
       params.require(:day).permit(:cash_start, :location, :large_start, :small_start, :bottles_start, :hot_medium_start, :hot_small_start)
+    end
+
+    def close_day_params
+      params.require(:day).permit(:cash_end, :closed, :large_end, :small_end, :bottles_end, :hot_medium_end, :hot_small_end)
     end
 
 end

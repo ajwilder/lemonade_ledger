@@ -1,0 +1,46 @@
+<h1>Close <%= day_display(@day) %></h1>
+
+<%= form_for(@day, url:'/close') do |f| %>
+
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="form_field">
+  <label for="day_cash_end">Ending cash:</label>
+  <%= f.number_field :cash_end, value: number_to_currency(0.0, delimiter: '', unit: ''), step: 0.01 %>
+</div>
+
+
+<div class="form_field">
+  <label for="day_large_end">Ending large cups:</label>
+  <%= f.number_field :large_end, value: '' %>
+</div>
+
+
+<div class="form_field">
+  <%= f.number_field :small_end, value: ''  %>
+  <label for="day_small_end">Ending small cups:</label>
+</div>
+
+
+<div class="form_field">
+  <%= f.number_field :bottle_end, value: '' %>
+  <label for="day_bottle_end">Ending water bottles:</label>
+</div>
+
+<div class="form_field">
+  <%= f.number_field :hot_medium_end, value: ''  %>
+  <label for="day_hot_medium_end">Ending med. hot cups:</label>
+</div>
+
+<div class="form_field">
+  <%= f.number_field :hot_small_end, value: ''  %>
+  <label for="day_hot_small_end">Ending small hot cups:</label>
+</div>
+
+<%= f.hidden_field :closed, value: true %>
+<%= f.hidden_field :id %>
+
+<%= f.submit "Close out this day" %>
+
+
+<% end %>
