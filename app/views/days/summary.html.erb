@@ -1,0 +1,102 @@
+<h1>Summary for <%= day_display(@day) %></h1>
+
+<p>
+  Transactions: <%= @day.sales.count %>
+</p>
+<p>
+  Total Sales = $<%= '%.2f' % (@day.cash_end - @day.cash_start).round(2) %>
+</p>
+
+<table class="summary_table">
+  <tr>
+    <th>
+      Item
+    </th>
+    <th>
+      No. Sold
+    </th>
+  </tr>
+  <% @item_sales.each do |item| %>
+    <tr>
+      <td>
+        <%= item[0] %>
+      </td>
+      <td>
+        <%= item[1] %>
+      </td>
+    </tr>
+  <% end %>
+
+
+</table>
+
+
+
+<table class="summary_table">
+  <tr>
+    <th>
+      Inventory Item
+    </th>
+    <th>
+      Start
+    </th>
+    <th>
+      End
+    </th>
+  </tr>
+  <tr>
+    <td>
+      Small Cups
+    </td>
+    <td>
+      <%= @day.small_start %>
+    </td>
+    <td>
+      <%= @day.small_end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Large Cups
+    </td>
+    <td>
+      <%= @day.large_start %>
+    </td>
+    <td>
+      <%= @day.large_end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Water Bottles
+    </td>
+    <td>
+      <%= @day.bottle_start %>
+    </td>
+    <td>
+      <%= @day.bottle_end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Small Hot Cups
+    </td>
+    <td>
+      <%= @day.hot_small_start %>
+    </td>
+    <td>
+      <%= @day.hot_small_end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Medium Hot Cups
+    </td>
+    <td>
+      <%= @day.hot_medium_start %>
+    </td>
+    <td>
+      <%= @day.hot_medium_end %>
+    </td>
+  </tr>
+</table>

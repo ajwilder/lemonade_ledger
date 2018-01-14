@@ -1,0 +1,17 @@
+<h1>Ledger for <%= day_display(@day) %></h1>
+
+<div class="home_button">
+  <%= button_to "New Sale", new_sale_path, method: :get %>
+</div>
+
+<div class="home_button">
+  <%= button_to "Day Summary", summary_day_path(@day), method: :get %>
+</div>
+
+<div class="home_button">
+  <%= button_to "Restock", restock_day_path(@day), method: :get %>
+</div>
+
+<div class="home_button">
+  <%= button_to "Close Day", close_day_path(@day), method: :get %>
+</div>

@@ -1,0 +1,44 @@
+<h1><%= (@day.sales.count + 1).ordinalize %> Sale for <%= day_display(@day) %></h1>
+
+<div class="items">
+  <% @items.each do |item| %>
+  <div class="item_div <%= item.drink_type %>">
+    <h4><%= item.name %></h4>
+    <button class="item_button add_item" id="<%= item.name %>" data-price="<%= item.price %>" data-cup="<%= item.cup_type.sub(' ', '_') %>" data-name="<%= item.name %>" data-action="add">+</button>
+    <button class="item_button remove_item" id="<%= item.name %>" data-price="<%= item.price %>" data-cup="<%= item.cup_type.sub(' ', '_') %>" data-name="<%= item.name %>" data-action="remove">-</button>
+  </div>
+  <% end %>
+</div>
+
+<table class="sale_items">
+
+</table>
+<div class="total">
+  <strong>Total:</strong>
+  <span id="price_sum" class="float_right">0.00</span>
+</div>
+<div class="total">
+  <strong>Cash:</strong>
+  <span class="float_right"><input id="cash_tendered" type="number" step="0.01" /></span>
+</div>
+<div class="total">
+  <strong>Change:</strong>
+  <span id="sale_change" class="float_right">0</span>
+</div>
+
+
+<%= form_for(@sale) do |f| %>
+<%= f.hidden_field :price, value: '0', class: 'sale_cups' %>
+<%= f.hidden_field :large, value: '0', class: 'sale_cups'  %>
+<%= f.hidden_field :small, value: '0', class: 'sale_cups'  %>
+<%= f.hidden_field :bottle, value: '0', class: 'sale_cups'  %>
+<%= f.hidden_field :hot_small, value: '0', class: 'sale_cups'  %>
+<%= f.hidden_field :hot_medium, value: '0', class: 'sale_cups'  %>
+<%= hidden_field_tag :items %>
+<%= f.submit 'Complete Sale', id: 'sale_submit' %>
+<% end %>
+
+
+
+
+<%= javascript_include_tag 'new_sale' %>

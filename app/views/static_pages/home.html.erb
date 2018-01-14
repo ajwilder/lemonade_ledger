@@ -1,0 +1,14 @@
+<h1>Lemonade Ledger Home</h1>
+
+<%= button_to "It's a new day!", new_day_path, method: :get %>
+
+<% if @days.any? %>
+<h2>Open Ledgers</h2>
+<ul>
+  <% @days.each do |day| %>
+    <li>
+      <%= link_to day_display(day), day %>
+    </li>
+  <% end %>
+</ul>
+<% end %>

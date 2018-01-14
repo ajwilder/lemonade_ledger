@@ -1,0 +1,88 @@
+var buttons = document.querySelectorAll('.item_button')
+var table = document.querySelector('.sale_items')
+var priceDisplay = document.querySelector('#price_sum')
+
+buttons.forEach(function(button) {
+  button.addEventListener('click', handleItemClick)
+})
+
+// stores any new items in localstorage.  Iterates over local storage to display items on screen and store them in the hidden form fields
+function handleItemClick() {
+  var itemName = this.dataset.name
+  if(this.dataset.action == "remove") {
+    if (localStorage[itemName]) {
+      var o = localStorage.getItem(itemName)
+      o = JSON.parse(o)
+      o.count--;
+      if (o.count == 0) {
+        localStorage.removeItem(itemName)
+      } else {
+          localStorage[itemName] = JSON.stringify(o)
+      }
+    }
+  }
+  if (this.dataset.action == "add") {
+    if (localStorage[itemName]) {
+      var o = localStorage.getItem(itemName)
+      o = JSON.parse(o)
+      o.count++;
+      localStorage[itemName] = JSON.stringify(o)
+    } else {
+      localStorage.setItem(itemName, JSON.stringify({'count': 1, 'price': parseFloat(this.dataset.price).toFixed(2), 'cup_type': this.dataset.cup, 'name': itemName}));
+    }
+  }
+  table.innerHTML = '';
+  var totalPrice = 0.0;
+  cup_fields = document.querySelectorAll('.sale_cups');
+  cup_fields.forEach(function(field) {
+    field.value = 0;
+  });
+  var itemNames = ''
+  for (var i = 0; i < localStorage.length; i++){
+    var item = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    cup_type = item.cup_type;
+    cup_field = document.querySelector(`#sale_${cup_type}`);
+    current_cups = cup_field.value;
+    for (var j = 0; j < item.count; j++){
+      itemNames += item.name + ','
+      current_cups++;
+      var row = document.createElement('tr');
+      var itemName = document.createElement('td');
+      var price = document.createElement('td');
+      itemName.appendChild(document.createTextNode(item.name));
+      price.appendChild(document.createTextNode(parseFloat(item.price).toFixed(2)));
+      row.appendChild(itemName);
+      row.appendChild(price);
+      table.appendChild(row);
+      totalPrice += parseFloat(item.price);
+    }
+    cup_field.value = current_cups
+  }
+  priceDisplay.textContent = totalPrice.toFixed(2);
+  document.querySelector('#sale_price').value = totalPrice;
+  document.querySelector('#items').value = itemNames;
+}
+
+var cash_tendered = document.querySelector('#cash_tendered');
+cash_tendered.addEventListener('keyup', calculateChange)
+
+function calculateChange() {
+  var change = this.value - parseFloat(priceDisplay.textContent);
+  if (change > 0) {
+    document.querySelector('#sale_change').innerHTML = '$' + change.toFixed(2)
+  } else {
+    document.querySelector('#sale_change').innerHTML = 0
+  }
+}
+
+var submit = document.querySelector('#sale_submit');
+var back_button = document.querySelector('#back_ledger');
+var home = document.querySelector('#header_button');
+submit.addEventListener('click', clearStorage);
+back_button.addEventListener('click', clearStorage);
+home.addEventListener('click', clearStorage);
+
+
+function clearStorage() {
+  localStorage.clear()
+}

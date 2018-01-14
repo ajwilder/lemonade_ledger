@@ -5,10 +5,21 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag  'data-turbolinks-track': 'reload' %>
   </head>
-
+  <header>
+    <%= button_to "Home", root_path, method: :get, id: 'header_button' %>
+    <% if @day && @day.id %>
+      <%= button_to "Back to ledger options", day_path(@day), method: :get, class: 'back_ledger', id: 'back_ledger' %>
+    <% end %>
+  </header>
   <body>
-    <%= yield %>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <div class="content_container">
+      <%= yield %>
+    </div>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

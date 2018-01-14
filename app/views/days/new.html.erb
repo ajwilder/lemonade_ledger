@@ -1,0 +1,62 @@
+<h1>It's a new day!</h1>
+
+<%= form_for(@day) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="form_field">
+    <label for="location">Where you at?</label>
+    <%= f.select(:location, @locations) %>
+  </div>
+
+
+  <div class="form_field">
+    <label for="employees">Who's working today?</label>
+    <% @employees.each do |employee| %>
+      <div class="checkbox">
+        <%= check_box_tag('employees[]', employee, nil, {multiple: true, id: employee, value: employee }) %>
+        <label for="<%= employee %>"> <%= employee %> </label>
+      </div>
+    <% end %>
+  </div>
+
+
+  <div class="form_field">
+    <label for="cash_start">Starting cash:</label>
+    <%= f.number_field :cash_start, value: number_to_currency(f.object.cash_start.to_f, delimiter: '', unit: ''), step: 0.01 %>
+  </div>
+
+
+  <div class="form_field">
+    <label for="large_start">Starting large cups:</label>
+    <%= f.number_field :large_start %>
+  </div>
+
+
+  <div class="form_field">
+
+    <%= f.number_field :small_start %>
+    <label for="small_start">Starting small cups:</label>
+  </div>
+
+
+  <div class="form_field">
+
+    <%= f.number_field :bottle_start %>
+    <label for="bottle_start">Starting water bottles:</label>
+  </div>
+
+  <div class="form_field">
+
+    <%= f.number_field :hot_medium_start %>
+    <label for="hot_medium_start">Starting med. hot cups:</label>
+  </div>
+
+  <div class="form_field">
+
+    <%= f.number_field :hot_small_start %>
+    <label for="hot_small_start">Starting small hot cups:</label>
+  </div>
+
+  <%= f.submit "Let's start selling" %>
+
+
+<% end %>
