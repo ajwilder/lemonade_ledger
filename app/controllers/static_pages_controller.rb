@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
 
   def authenticate
     if Admin.first.authenticate(params[:password])
-      flash[:info] = 'This device is now registered to use the lemonaded ledger'
+      flash[:info] = 'This device is now registered to use the lemonade ledger'
       cookies.permanent.signed[:authentic] = Admin.first.password_digest
       redirect_to home_url
     else

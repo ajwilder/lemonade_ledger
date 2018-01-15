@@ -6,6 +6,9 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def show
+  end
+
   def edit
     @item = Item.find(params[:id])
   end
@@ -36,9 +39,9 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
-  def destroy
+  def delete
     Item.find(params[:id]).destroy
-    flash[:success] = "item deleted"
+    flash[:info] = "item deleted"
     redirect_to '/admin'
   end
 

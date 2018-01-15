@@ -45,7 +45,7 @@
       <% @items.each do |item| %>
         <li>
           <%= link_to item.name, edit_item_path(item) %>
-          <%= link_to "Delete Item", item_path(item), method: :delete, class: 'float_right' %>
+          <%= link_to "Delete Item", delete_item_path(item), method: :delete, class: 'float_right' %>
         </li>
       <% end %>
       <li>

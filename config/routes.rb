@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   end
 
 
-  resources :items
+  resources :items do
+    member do
+      get :delete
+    end
+  end
   resources :sales
 
 
