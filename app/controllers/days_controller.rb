@@ -1,4 +1,5 @@
 class DaysController < ApplicationController
+  before_action :authenticated
 
   def new
     @day = Day.new
@@ -12,7 +13,10 @@ class DaysController < ApplicationController
 
   def show
     @day = Day.find(params[:id])
-    redirect_to summary_day_path(@day) if @day.closed?
+    if @day.closed?
+      flash[:danger] = "Day has been closed.  Only Summary available"
+      redirect_to summary_day_path(@day) and return
+    end
     @sales = @day.sales
   end
 
@@ -44,7 +48,13 @@ class DaysController < ApplicationController
   end
 
   def summary
+
     @day = Day.find(params[:id])
+    if @day.sales.length == 0
+      flash[:danger] = "no sales to summarize yet"
+      redirect_to @day
+    end
+
     @item_sales = {}
     @day.sales.each do |sale|
       items = sale.items
@@ -58,8 +68,14 @@ class DaysController < ApplicationController
     end
   end
 
-  def restock
+  def restock_page
     @day = Day.find(params[:id])
+  end
+
+  def restock
+    @day = Day.find(params[:day][:id])
+    @day.update_attributes(restock_params)
+    redirect_to @day
   end
 
   def close_page
@@ -68,29 +84,39 @@ class DaysController < ApplicationController
 
   def close
     @day = Day.find(params[:day][:id])
-    @day.update_attributes(close_day_params)
-    @item_sales = {}
-    @day.sales.each do |sale|
-      items = sale.items
-      items.each do |item|
-        if @item_sales.key?(item)
-          @item_sales[item] += 1
-        else
-          @item_sales[item] = 1
+    if params[:day][:small_end] == '' || params[:day][:large_end] == '' || params[:day][:cash_end] == '' || params[:day][:bottle_end] == '' || params[:day][:hot_small_end] == '' || params[:day][:hot_medium_end] == ''
+      flash[:danger] = "Fill in all fields to close the day"
+      redirect_to close_page_day_path(@day) and return
+    else
+      @day.update_attributes(close_day_params)
+      @item_sales = ActiveSupport::OrderedHash.new
+      @day.sales.each do |sale|
+        items = sale.items
+        items.each do |item|
+          if @item_sales.key?(item)
+            @item_sales[item] += 1
+          else
+            @item_sales[item] = 1
+          end
         end
       end
+      cookies.delete(:day)
+      redirect_to summary_day_path(@day)
     end
-    redirect_to summary_day_path(@day)
   end
 
   private
 
     def new_day_params
-      params.require(:day).permit(:cash_start, :location, :large_start, :small_start, :bottles_start, :hot_medium_start, :hot_small_start)
+      params.require(:day).permit(:cash_start, :location, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start)
+    end
+
+    def restock_params
+      params.require(:day).permit(:cash_restock, :large_restock, :small_restock, :bottle_restock, :hot_medium_restock, :hot_small_restock)
     end
 
     def close_day_params
-      params.require(:day).permit(:cash_end, :closed, :large_end, :small_end, :bottles_end, :hot_medium_end, :hot_small_end)
+      params.require(:day).permit(:cash_end, :closed, :large_end, :small_end, :bottle_end, :hot_medium_end, :hot_small_end)
     end
 
 end

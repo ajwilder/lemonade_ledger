@@ -1,15 +1,42 @@
+<% provide(:title, "#{(@day.sales.count + 1).ordinalize} Sale for #{day_display(@day)}") %>
+
+
+
 <h1><%= (@day.sales.count + 1).ordinalize %> Sale for <%= day_display(@day) %></h1>
 
 <div class="items">
   <% @items.each do |item| %>
   <div class="item_div <%= item.drink_type %>">
     <h4><%= item.name %></h4>
-    <button class="item_button add_item" id="<%= item.name %>" data-price="<%= item.price %>" data-cup="<%= item.cup_type.sub(' ', '_') %>" data-name="<%= item.name %>" data-action="add">+</button>
-    <button class="item_button remove_item" id="<%= item.name %>" data-price="<%= item.price %>" data-cup="<%= item.cup_type.sub(' ', '_') %>" data-name="<%= item.name %>" data-action="remove">-</button>
+    <button class="item_button add_item" data-price="<%= item.price %>" data-cup="<%= item.cup_type.sub(' ', '_') %>" data-name="<%= item.name %>" data-vendor_price="<%= item.vendor_price%>" data-action="add">+</button>
+    <button class="item_button remove_item" id="<%= item.name %>" data-price="<%= item.price %>" data-cup="<%= item.cup_type.sub(' ', '_') %>" data-name="<%= item.name %>" data-vendor_price="<%= item.vendor_price%>" data-action="remove">-</button>
   </div>
   <% end %>
 </div>
 
+<div class="permanent_items permanent_items__left">
+  <div class="item_div item_div__misc permanent">
+    <h4>Misc. Item</h4>
+    <button class="perm_item_button misc_item_button add_item misc_item"  data-action="add">+</button>
+    <button class="perm_item_button misc_item_button remove_item misc_item"  data-action="remove">-</button>
+    <label for="misc_item_price">Price:</label>
+    $<input id="misc_item_price" type="number" step="0.01" value=0 />
+    <label for="misc_item_cup_type">Cup Type:</label>
+    <%= select_tag(:misc_item_cup_type, options_for_select(Item::Cup_types.collect{ |type| type.sub('_',' ').titleize }),
+      {:include_blank => true }) %>
+  </div>
+  <div class="item_div permanent vendor_div">
+    <h4>Vendor price</h4>
+    <button class="vendor_price_button add_item perm_item_button"  data-action="add">+</button>
+    <button class="vendor_price_button remove_item perm_item_button"  data-action="remove">-</button>
+  </div>
+</div>
+<div class="permanent_items permanent_items__right">
+  <div class="item_div permanent">
+    <h4>Clear all items</h4>
+    <button class="perm_item_button remove_item clear_all" id="clear_all" data-action="remove">-</button>
+  </div>
+</div>
 <table class="sale_items">
 
 </table>

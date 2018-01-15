@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ledger</title>
-    <%= csrf_meta_tags %>
 
+    <%= csrf_meta_tags %>
+    <title><%= yield(:title) %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag  'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
+  <header class="header">
     <%= button_to "Home", root_path, method: :get, id: 'header_button' %>
     <% if @day && @day.id %>
       <%= button_to "Back to ledger options", day_path(@day), method: :get, class: 'back_ledger', id: 'back_ledger' %>
+    <% end %>
+    <% if current_day %>
+      <span class="header_authentication">Logged in for <%= day_display(current_day) %></span>      
     <% end %>
   </header>
   <body>

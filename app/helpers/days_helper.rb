@@ -1,5 +1,11 @@
 module DaysHelper
 
+  def current_day
+    if (day_id = cookies.signed[:day])
+      @day = Day.find(day_id)
+    end
+  end
+
   def day_display(day)
      day.created_at.strftime("%m/%d").to_s + " " +  day.location
   end
@@ -24,7 +30,7 @@ module DaysHelper
     if !day.closed?
       return '-'
     else
-      return day["#{item}_end"] - day["#{item}_start"] + inventory_used(day, item)
+      return day["#{item}_end"] - day["#{item}_start"] + day["#{item}_restock"]  + inventory_used(day, item)
     end
   end
 

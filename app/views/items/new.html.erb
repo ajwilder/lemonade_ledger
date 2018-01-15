@@ -1,0 +1,47 @@
+<% provide(:title, "New Item") %>
+
+<h1>New Item</h1>
+
+<%= form_for(@item) do |f| %>
+
+<div class="item_form_field">
+  <%= f.label :name %>
+  <span class="float_right"><%= f.text_field :name %></span>
+
+</div>
+
+<div class="item_form_field">
+  <%= f.label :cup_type %>
+  <span class="float_right">  <%= f.select :cup_type, options_for_select(Item::Cup_types), {:include_blank => true } %></span>
+
+  </div>
+
+<div class="item_form_field">
+  <%= f.label :drink_type %>
+  <span class="float_right"><%= f.select :drink_type, options_for_select(Item::Drink_types) %></span>
+
+</div>
+
+<div class="item_form_field">
+  <%= f.label :price %>
+  <span class="float_right">  <%= f.number_field :price, in: 1.0..20.0, step: 0.25 %></span>
+
+</div>
+
+<div class="item_form_field">
+  <%= f.label :vendor_price %>
+  <span class="float_right">  <%= f.number_field :vendor_price, in: 1.0..20.0, step: 0.25 %></span>
+
+</div>
+
+<div class="item_form_field">
+  <%= f.label :active %>
+  <%= f.check_box :active %>
+</div>
+
+<div class="item_form_field">
+  <%= f.submit 'Save New Item' %>
+</div>
+<% end %>
+
+<%= button_to "Back to Admin Page", '/admin', method: :get, class: 'home_button' %>

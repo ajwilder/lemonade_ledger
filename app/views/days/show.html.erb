@@ -1,17 +1,25 @@
+<% provide(:title, "#{day_display(@day)}") %>
+
 <h1>Ledger for <%= day_display(@day) %></h1>
 
+<% if current_day && @day == current_day %>
 <div class="home_button">
   <%= button_to "New Sale", new_sale_path, method: :get %>
 </div>
+<% else %>
+<h3>This ledger is being used on a different device.</h3>
+<% end %>
 
 <div class="home_button">
   <%= button_to "Day Summary", summary_day_path(@day), method: :get %>
 </div>
 
+<% if current_day && @day == current_day %>
 <div class="home_button">
-  <%= button_to "Restock", restock_day_path(@day), method: :get %>
+  <%= button_to "Restock", restock_page_day_path(@day), method: :get %>
 </div>
 
 <div class="home_button">
   <%= button_to "Close Day", close_page_day_path(@day), method: :get %>
 </div>
+<% end %>

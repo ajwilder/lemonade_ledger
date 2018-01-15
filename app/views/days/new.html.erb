@@ -1,3 +1,4 @@
+<% provide(:title, "New Day") %>
 <h1>It's a new day!</h1>
 
 <%= form_for(@day) do |f| %>
@@ -6,7 +7,6 @@
     <label for="day_location">Where you at?</label>
     <%= f.select(:location, @locations) %>
   </div>
-
 
   <div class="form_field">
     <label for="day_employees">Who's working today?</label>

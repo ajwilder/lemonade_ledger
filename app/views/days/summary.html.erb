@@ -1,4 +1,21 @@
+<% provide(:title, "Summary #{day_display(@day)}") %>
+
 <h1>Summary for <%= day_display(@day) %></h1>
+
+<% if @day.closed? %>
+<h3>This ledger has been closed</h3>
+<% else %>
+<p>
+  <strong>This ledger is still open.</strong>
+</p>
+<% end %>
+
+<p>
+  Employees:
+  <%= @day.employees.join(',') %>
+
+</p>
+
 
 <table class="summary_table">
   <tr>
@@ -45,7 +62,7 @@
       No. Sold
     </th>
   </tr>
-  <% @item_sales.each do |item| %>
+  <% @item_sales.sort_by{ |k, v| k }.to_h.each do |item| %>
     <tr>
       <td>
         <%= item[0] %>
@@ -70,6 +87,9 @@
       Start Count
     </th>
     <th>
+      Restock
+    </th>
+    <th>
       End Count
     </th>
     <th>
@@ -85,6 +105,9 @@
     </td>
     <td>
       <%= @day.small_start %>
+    </td>
+    <td>
+      <%= @day.small_restock %>
     </td>
     <td>
       <%= @day.closed? ? @day.small_end : '-' %>
@@ -104,6 +127,9 @@
       <%= @day.large_start %>
     </td>
     <td>
+      <%= @day.large_restock %>
+    </td>
+    <td>
       <%= @day.closed? ? @day.large_end : '-' %>
     </td>
     <td>
@@ -119,6 +145,9 @@
     </td>
     <td>
       <%= @day.bottle_start %>
+    </td>
+    <td>
+      <%= @day.bottle_restock %>
     </td>
     <td>
       <%= @day.closed? ? @day.bottle_end : '-' %>
@@ -138,6 +167,9 @@
       <%= @day.hot_small_start %>
     </td>
     <td>
+      <%= @day.hot_small_restock %>
+    </td>
+    <td>
       <%= @day.closed? ? @day.hot_small_end : '-' %>
     </td>
     <td>
@@ -155,6 +187,9 @@
       <%= @day.hot_medium_start %>
     </td>
     <td>
+      <%= @day.hot_medium_restock %>
+    </td>
+    <td>
       <%= @day.closed? ? @day.hot_medium_end : '-' %>
     </td>
     <td>
@@ -165,3 +200,24 @@
     </td>
   </tr>
 </table>
+
+<div class="summary_sales">
+  <h2>All Sales</h2>
+  <ul>
+    <% count = 1 %>
+    <% @day.sales.each do |sale| %>
+      <li>
+        <%= count.ordinalize %> sale:
+          <ul>
+            <li>
+              $<%= '%.2f' % sale.price %>
+            </li>
+            <li class="small_text">
+              <%= sale.items.join(',') %>
+            </li>
+          </ul>
+        <% count += 1 %>
+      </li>
+    <% end %>
+  </ul>
+</div>

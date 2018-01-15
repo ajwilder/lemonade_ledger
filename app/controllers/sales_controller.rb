@@ -1,4 +1,6 @@
 class SalesController < ApplicationController
+  before_action :authenticated
+  
   def new
     @day = current_day
     @sale = @day.sales.build

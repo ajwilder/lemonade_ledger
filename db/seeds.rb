@@ -11,6 +11,7 @@ Item.create!(
   drink_type: "lemonade",
   cup_type: 'large',
   price: 4.0,
+  vendor_price: 2.0,
   active: true
 )
 Item.create!(
@@ -18,6 +19,7 @@ Item.create!(
   drink_type: "lemonade",
   cup_type: 'small',
   price: 2.0,
+  vendor_price: 1.0,
   active: true
 )
 Item.create!(
@@ -25,6 +27,7 @@ Item.create!(
   drink_type: "coffee",
   cup_type: 'hot_medium',
   price: 2.5,
+  vendor_price: 1.0,
   active: true
 )
 Item.create!(
@@ -32,6 +35,7 @@ Item.create!(
   drink_type: "coffee",
   cup_type: 'hot_small',
   price: 1.5,
+  vendor_price: 0.75,
   active: true
 )
 Item.create!(
@@ -39,10 +43,13 @@ Item.create!(
   drink_type: "water",
   cup_type: 'bottle',
   price: 1.5,
+  vendor_price: 0.75,
   active: true
 )
 
 Admin.create!(
+  password: 'WillsButt',
+  password_confirmation: 'WillsButt',
   employees: ['Alan','Desiree','Matt'],
   locations: ['Marion Square', 'James Island', 'Market Street']
 )

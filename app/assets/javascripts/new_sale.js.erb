@@ -1,7 +1,11 @@
+//Local variable to change price for vendors
+var vendor = false;
+
+
+// Add EventListeners for item buttons
 var buttons = document.querySelectorAll('.item_button')
 var table = document.querySelector('.sale_items')
 var priceDisplay = document.querySelector('#price_sum')
-
 buttons.forEach(function(button) {
   button.addEventListener('click', handleItemClick)
 })
@@ -9,6 +13,13 @@ buttons.forEach(function(button) {
 // stores any new items in localstorage.  Iterates over local storage to display items on screen and store them in the hidden form fields
 function handleItemClick() {
   var itemName = this.dataset.name
+  var itemPrice
+  if (vendor == false){
+    itemPrice = this.dataset.price;
+  } else {
+    itemPrice = this.dataset.vendor_price;
+    itemName += '(v)'
+  }
   if(this.dataset.action == "remove") {
     if (localStorage[itemName]) {
       var o = localStorage.getItem(itemName)
@@ -28,9 +39,14 @@ function handleItemClick() {
       o.count++;
       localStorage[itemName] = JSON.stringify(o)
     } else {
-      localStorage.setItem(itemName, JSON.stringify({'count': 1, 'price': parseFloat(this.dataset.price).toFixed(2), 'cup_type': this.dataset.cup, 'name': itemName}));
+      localStorage.setItem(itemName, JSON.stringify({'count': 1, 'price': itemPrice, 'cup_type': this.dataset.cup, 'name': itemName}));
     }
   }
+  updatePage()
+}
+
+// Updates page with all data form localStorage
+function updatePage() {
   table.innerHTML = '';
   var totalPrice = 0.0;
   cup_fields = document.querySelectorAll('.sale_cups');
@@ -41,11 +57,13 @@ function handleItemClick() {
   for (var i = 0; i < localStorage.length; i++){
     var item = JSON.parse(localStorage.getItem(localStorage.key(i)));
     cup_type = item.cup_type;
-    cup_field = document.querySelector(`#sale_${cup_type}`);
-    current_cups = cup_field.value;
+    if (cup_type) {
+      cup_field = document.querySelector(`#sale_${cup_type}`);
+      current_cups = cup_field.value;
+    }
     for (var j = 0; j < item.count; j++){
       itemNames += item.name + ','
-      current_cups++;
+      if (cup_type) current_cups++;
       var row = document.createElement('tr');
       var itemName = document.createElement('td');
       var price = document.createElement('td');
@@ -56,13 +74,14 @@ function handleItemClick() {
       table.appendChild(row);
       totalPrice += parseFloat(item.price);
     }
-    cup_field.value = current_cups
+    if (cup_type) cup_field.value = current_cups;
   }
   priceDisplay.textContent = totalPrice.toFixed(2);
   document.querySelector('#sale_price').value = totalPrice;
   document.querySelector('#items').value = itemNames;
 }
 
+// Calculates change
 var cash_tendered = document.querySelector('#cash_tendered');
 cash_tendered.addEventListener('keyup', calculateChange)
 
@@ -75,6 +94,81 @@ function calculateChange() {
   }
 }
 
+// Align permanent buttons to top of table
+var perm_buttons_divs = document.querySelectorAll('.permanent_items');
+var table = document.querySelector('.sale_items')
+perm_buttons_divs.forEach(function(div){
+  div.style.top = table.offsetTop + 'px'
+})
+
+// Add misc_item to sale
+var misc_item_buttons = document.querySelectorAll('.misc_item_button');
+var misc_item_price = document.querySelector('#misc_item_price');
+var misc_item_cup_type = document.querySelector('#misc_item_cup_type')
+misc_item_buttons.forEach(function(button) {
+  button.addEventListener('click', handleMiscItemClick)
+})
+
+function handleMiscItemClick() {
+  var itemName
+  var itemPrice = parseFloat(misc_item_price.value)
+  var cup_type = misc_item_cup_type.value
+  if (cup_type){
+    itemName = `Misc. $${itemPrice.toFixed(2)} Item w/${cup_type} ${ cup_type == 'Bottle' ? '' : 'cup'}`;
+  } else {
+    itemName = `Misc. $${itemPrice.toFixed(2)} Item`
+  }
+  if(this.dataset.action == "remove") {
+    if (localStorage[itemName]) {
+      var o = localStorage.getItem(itemName)
+      o = JSON.parse(o)
+      o.count--;
+      if (o.count == 0) {
+        localStorage.removeItem(itemName)
+      } else {
+          localStorage[itemName] = JSON.stringify(o)
+      }
+    }
+  }
+  if (this.dataset.action == "add") {
+    if (localStorage[itemName]) {
+      var o = localStorage.getItem(itemName)
+      o = JSON.parse(o)
+      o.count++;
+      localStorage[itemName] = JSON.stringify(o)
+    } else {
+      localStorage.setItem(itemName, JSON.stringify({'count': 1, 'price': itemPrice, 'cup_type': cup_type.replace(' ','_').toLowerCase(), 'name': itemName}));
+    }
+  }
+  updatePage()
+}
+
+// toggle the vender prices
+var vendor_price_buttons = document.querySelectorAll('.vendor_price_button')
+var vendor_div = document.querySelector('.vendor_div');
+vendor_price_buttons.forEach(function(button){
+  button.addEventListener('click', toggleVendor)
+})
+function toggleVendor() {
+  if (this.dataset.action == 'add') {
+    vendor = true;
+    vendor_div.style.background = 'green';
+  } else {
+    vendor = false;
+    vendor_div.style.background = '#ffd891';
+  }
+}
+
+
+
+
+// clear local storage when clear all button clicked
+var clear_button = document.querySelector('#clear_all')
+clear_button.addEventListener('click', clearStorage)
+
+
+
+// Clears localStorage when you leave the page or enter the page
 var submit = document.querySelector('#sale_submit');
 var back_button = document.querySelector('#back_ledger');
 var home = document.querySelector('#header_button');
@@ -82,7 +176,8 @@ submit.addEventListener('click', clearStorage);
 back_button.addEventListener('click', clearStorage);
 home.addEventListener('click', clearStorage);
 
-
 function clearStorage() {
+  priceDisplay.textContent = ''
+  table.innerHTML = '';
   localStorage.clear()
 }

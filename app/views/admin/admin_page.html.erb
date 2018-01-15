@@ -1,0 +1,73 @@
+<% provide(:title, 'Lemonade Admin') %>
+<div class="admin">
+  <h1>Admin</h1>
+  <div class="admin_div">
+    <h3>Update Employees</h3>
+    <%= form_tag('/employees', method: 'post') do %>
+      <div class="form_field">
+        Click to remove employee:
+        <% @admin.employees.each do |employee| %>
+          <div class="checkbox">
+            <%= check_box_tag('employees[]', employee, nil, {multiple: true, id: employee}) %>
+            <label for="<%= employee %>"> <%= employee %> </label>
+          </div>
+        <% end %>
+      </div>
+      <div >
+          <label for="employee">New Employee:</label>
+        <%= text_field_tag "employee", nil, { class: 'form_field'} %>
+      </div>
+        <%= submit_tag "Update Employee List" %>
+    <% end %>
+  </div>
+  <div class="admin_div">
+    <h3>Update Locations</h3>
+    <%= form_tag('/locations', method: 'post') do %>
+      <div class="form_field">
+        Click to remove location:
+        <% @admin.locations.each do |location| %>
+          <div class="checkbox">
+            <%= check_box_tag('locations[]', location, nil, {multiple: true, id: location}) %>
+            <label for="<%= location %>"> <%= location %> </label>
+          </div>
+        <% end %>
+      </div>
+      <div >
+          <label for="location">New Location:</label>
+        <%= text_field_tag "location", nil, { class: 'form_field'} %>
+      </div>
+        <%= submit_tag "Update Location List" %>
+    <% end %>
+  </div>
+  <div class="admin_div">
+    <h3>Update Items</h3>
+    <ul>
+      <% @items.each do |item| %>
+        <li>
+          <%= link_to item.name, edit_item_path(item) %>
+          <%= link_to "Delete Item", item_path(item), method: :delete, class: 'float_right' %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "New Item", new_item_path %>
+      </li>
+      <li>
+        <%= link_to "All Items", items_path %>
+      </li>
+    </ul>
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<%= button_to "Log Out Admin", admin_logout_path,  method: :delete, class: 'home_button' %>

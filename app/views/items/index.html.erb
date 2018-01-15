@@ -1,0 +1,50 @@
+<% provide(:title, 'All Items') %>
+
+<h1>All Item Properties</h1>
+
+<table class="items_index">
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Price
+    </th>
+    <th>
+      Vendor Price
+    </th>
+    <th>
+      Cup Type
+    </th>
+    <th>
+      Drink Type
+    </th>
+    <th>
+      Active?
+    </th>
+  </tr>
+  <% @items.each do |item| %>
+  <tr>
+    <td>
+      <%= item.name %>
+    </td>
+    <td>
+      <%= item.price %>
+    </td>
+    <td>
+      <%= item.vendor_price %>
+    </td>
+    <td>
+      <%= item.cup_type %>
+    </td>
+    <td>
+      <%= item.drink_type %>
+    </td>
+    <td>
+      <%= item.active %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<%= button_to "Back to Admin Page", '/admin', method: :get, class: 'home_button' %>

@@ -1,0 +1,42 @@
+<% provide(:title, "Restock #{day_display(@day)}") %>
+
+<h1>Restock <%= day_display(@day) %></h1>
+
+<%= form_for(@day, url:'/restock') do |f| %>
+
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="form_field">
+  <label for="day_large_restock">Restock large cups:</label>
+  <%= f.number_field :large_restock, value: 0 %>
+</div>
+
+
+<div class="form_field">
+  <%= f.number_field :small_restock, value: 0  %>
+  <label for="day_small_restock">Restock small cups:</label>
+</div>
+
+
+<div class="form_field">
+  <%= f.number_field :bottle_restock, value: 0 %>
+  <label for="day_bottle_restock">Restock water bottles:</label>
+</div>
+
+<div class="form_field">
+  <%= f.number_field :hot_medium_restock, value: 0  %>
+  <label for="day_hot_medium_restock">Restock med. hot cups:</label>
+</div>
+
+<div class="form_field">
+  <%= f.number_field :hot_small_restock, value: 0  %>
+  <label for="day_hot_small_restock">Restock small hot cups:</label>
+</div>
+
+<%= f.hidden_field :closed, value: true %>
+<%= f.hidden_field :id %>
+
+<%= f.submit "Update Ledger" %>
+
+
+<% end %>

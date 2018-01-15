@@ -1,3 +1,6 @@
+<% provide(:title, "Close #{day_display(@day)}") %>
+
+
 <h1>Close <%= day_display(@day) %></h1>
 
 <%= form_for(@day, url:'/close') do |f| %>

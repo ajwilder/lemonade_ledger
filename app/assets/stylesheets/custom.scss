@@ -1,6 +1,7 @@
 $lemonade: #fcf37b;
 $coffee: #cecb9f;
 $water: #d1faff;
+$permanent: #ffd891;
 $add_item: #d6f9c7;
 $remove_item: #f9dbc7;
 
@@ -34,6 +35,7 @@ ul {
 input {
   font-size: 1em;
   border-radius: 3px;
+
 }
 button {
   background-color: lightgrey;
@@ -49,13 +51,34 @@ p {
 .float_right {
   float: right;
 }
+.small_text {
+  font-size: 0.7em;
+}
+input[type="submit"] {
+  cursor: pointer;
+  display: block;
+}
+input[type="submit"]:hover {
+  background-color: lightgrey;
+}
 
-
-
+// Home page styles
 .home_button {
   margin: 1em;
 }
 
+// Header styles
+.header {
+  form {
+    display: inline;
+  }
+  &_authentication {
+    float: right;
+    font-size: 0.7em;
+  }
+}
+
+// form_field styles
 .form_field {
   margin: 15px 0;
   > input {
@@ -84,6 +107,9 @@ p {
 .water {
   background-color: $water;
 }
+.permanent {
+  background-color: $permanent;
+}
 .items {
   width: 80vw;
 }
@@ -96,6 +122,20 @@ p {
   width: 150px;
   margin: 10px;
   border: 1px solid darkgrey;
+  &__misc {
+    height: 200px;
+    input {
+      width: 4.5em;
+      margin-top: 5px;
+    }
+    select {
+      width: 5.5em;
+    }
+    label {
+      font-size: 0.8em;
+      margin-top: 5px;
+    }
+  }
 }
 .item_button {
   font-size: 2em;
@@ -128,7 +168,28 @@ p {
   padding: 3em;
   background-color: lightgreen;
 }
+.perm_item_button {
+  font-size: 2em;
+  height: 60px;
+  width: 60px;
+  margin: 0 5px;
+}
+.permanent_items {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  &__left {
+    right: 2vw;
+  }
+  &__right {
+    left: 2vw;
+  }
+  &__misc {
 
+  }
+}
+
+// Summary styles
 .summary_table {
   width: 40em;
   text-align: left;
@@ -139,6 +200,46 @@ p {
   }
 }
 
+// admin page styles
+.admin {
+  h3 {
+    margin: 0;
+  }
+}
+.admin_div {
+
+  border: 1px solid darkgrey;
+  padding: 1em;
+}
+.item_form_field {
+  margin-bottom: 0.5em;
+  label {
+    margin-right: 4px;
+  }
+}
+.items_index {
+  width: 700px;
+  border: 1px solid darkgrey;
+  th {
+    border-bottom: 1px solid darkgrey;
+  }
+}
+
+// flash styles
+.alert {
+  align-items: center;
+  text-align: center;
+  width: 100vw;
+  margin: 1em 0;
+  padding: 1em 0;
+  font-size: 1em;
+  &-danger {
+    border: 1px solid red;
+  }
+  &-info {
+    border: 1px solid green;
+  }
+}
 
 .debug_dump {
   width: 400px;

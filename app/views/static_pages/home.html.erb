@@ -1,6 +1,9 @@
+<% provide(:title, "Lemonade Ledger Home") %>
+
 <h1>Lemonade Ledger Home</h1>
 
-<%= button_to "It's a new day!", new_day_path, method: :get %>
+<%= button_to "It's a new day!", new_day_path, method: :get, class: 'home_button' %>
+<%= button_to "Admin Page", admin_login_path, method: :get, class: 'home_button' %>
 
 <% if @days.any? %>
 <h2>Open Ledgers</h2>
