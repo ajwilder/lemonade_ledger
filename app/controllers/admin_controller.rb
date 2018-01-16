@@ -16,8 +16,25 @@ class AdminController < ApplicationController
     end
   end
 
-  def admin_page
+  def update_admin
     @admin = Admin.first
+    if !@admin.authenticate(params[:current_password])
+      flash[:danger] = 'Incorrect Password'
+      redirect_to '/admin' and return
+    end
+    if @admin.update_attributes(password: params[:new_password], password_confirmation: params[:new_password_confirmation])
+      cookies.permanent.signed[:authentic] = @admin.password_digest
+      session[:admin] = @admin.password_digest
+      flash[:info] = 'Password updated'
+      redirect_to '/admin'
+    else
+      flash[:danger] = "Passwords don't match"
+      redirect_to '/admin'
+    end
+  end
+
+  def admin_page
+    @admin = Admin.find(1)
     @items = Item.all
   end
 
@@ -27,7 +44,7 @@ class AdminController < ApplicationController
   end
 
   def employees
-    @admin = Admin.first
+    @admin = Admin.find(1)
     if params[:employee] && !params[:employee].empty?
       @admin.employees << params[:employee]
     end
@@ -69,7 +86,11 @@ class AdminController < ApplicationController
   end
 
 
+  private
 
+    def admin_params
+      params.require(:admin).permit(:password, :password_confirmation)
+    end
 
 
 

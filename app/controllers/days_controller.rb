@@ -8,7 +8,8 @@ class DaysController < ApplicationController
   end
 
   def index
-    @days = Day.all
+    @open_days = Day.where(closed: false)
+    @closed_days = Day.where(closed: true)
   end
 
   def show

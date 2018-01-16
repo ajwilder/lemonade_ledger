@@ -52,12 +52,41 @@
         <%= link_to "New Item", new_item_path %>
       </li>
       <li>
-        <%= link_to "All Items", items_path %>
+        <%= link_to "View Properties of All Items", items_path %>
       </li>
     </ul>
+  </div>
+  <div class="admin_div">
+    <h3>Update Admin Password</h3>
+    <%= form_tag('/update_admin', method: 'post') do |f| %>
+    <div>
+      <%= label_tag :current_password %>
+      <span >  <%= password_field_tag :current_password %>
+      </span>
 
+    </div>
+    <div>
+      <%= label_tag :new_password %>
+      <span ><%= password_field_tag :new_password %>
+      </span>
 
+    </div>
+    <div>
+      <%= label_tag :new_password_confirmation %>
+      <span ><%= password_field_tag :new_password_confirmation %></span>
+    </div>
+    <div>
+      <%= submit_tag 'Update Password'  %>
+    </div>
+    <% end %>
+    <p>
+      <em>Note: Once you update password, all devices currently in use will have to re-authenticated.</em>
+    </p>
 
+  </div>
+  <div class="admin_div">
+    <h3>View All Ledgers</h3>
+      <%= link_to 'All Ledgers', days_path %>
   </div>
 </div>
 

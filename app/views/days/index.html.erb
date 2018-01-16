@@ -1,0 +1,21 @@
+<% provide(:title, 'All Ledgers') %>
+
+<h1>All Ledgers</h1>
+<h3>Open Ledgers</h3>
+<ul>
+  <% @open_days.each do |day| %>
+  <li>
+    <%= link_to day_display(day), day %>
+  </li>
+  <% end %>
+</ul>
+<h3>Closed Ledgers</h3>
+<ul>
+  <% @closed_days.each do |day| %>
+  <li>
+    <%= link_to day_display(day), day %>
+  </li>
+  <% end %>
+</ul>
+
+<%= button_to "Back to Admin Page", '/admin', method: :get, class: 'home_button' %>

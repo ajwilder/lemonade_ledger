@@ -71,6 +71,10 @@ input[type="submit"]:hover {
 .header {
   form {
     display: inline;
+    input[type="submit"] {
+      cursor: pointer;
+      display: inline;
+    }
   }
   &_authentication {
     float: right;
@@ -110,9 +114,7 @@ input[type="submit"]:hover {
 .permanent {
   background-color: $permanent;
 }
-.items {
-  width: 80vw;
-}
+
 .item_div {
   vertical-align: top;
   border-radius: 5px;
@@ -210,6 +212,9 @@ input[type="submit"]:hover {
 
   border: 1px solid darkgrey;
   padding: 1em;
+  p {
+    font-size: 0.8em;
+  }
 }
 .item_form_field {
   margin-bottom: 0.5em;

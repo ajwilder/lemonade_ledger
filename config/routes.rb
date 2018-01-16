@@ -31,5 +31,6 @@ Rails.application.routes.draw do
   delete '/admin_logout', to: 'admin#logout'
   post '/employees', to: 'admin#employees'
   post '/locations', to: 'admin#locations'
+  post '/update_admin', to: 'admin#update_admin'
 
 end
