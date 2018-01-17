@@ -87,7 +87,7 @@ class DaysController < ApplicationController
     @day = Day.find(params[:day][:id])
     if params[:day][:small_end] == '' || params[:day][:large_end] == '' || params[:day][:cash_end] == '' || params[:day][:bottle_end] == '' || params[:day][:hot_small_end] == '' || params[:day][:hot_medium_end] == ''
       flash[:danger] = "Fill in all fields to close the day"
-      redirect_to close_page_day_path(@day) and return
+      render close_page_day_path(@day) and return
     else
       @day.update_attributes(close_day_params)
       @item_sales = ActiveSupport::OrderedHash.new
