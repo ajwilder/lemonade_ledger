@@ -85,9 +85,14 @@ class DaysController < ApplicationController
 
   def close
     @day = Day.find(params[:day][:id])
-    if params[:day][:small_end] == '' || params[:day][:large_end] == '' || params[:day][:cash_end] == '' || params[:day][:bottle_end] == '' || params[:day][:hot_small_end] == '' || params[:day][:hot_medium_end] == ''
+    if @day.sales.length == 0
+      @day.destroy
+      cookies.delete(:day)
+      flash[:danger] = 'Ledger closed with no sales.  Record Deleted'
+      redirect_to root_path and return
+    elsif (params[:day][:small_end] == '' || params[:day][:large_end] == '' || params[:day][:cash_end] == '' || params[:day][:bottle_end] == '' || params[:day][:hot_small_end] == '' || params[:day][:hot_medium_end] == '')
       flash[:danger] = "Fill in all fields to close the day"
-      render close_page_day_path(@day) and return
+      redirect_to close_page_day_path(@day) and return
     else
       @day.update_attributes(close_day_params)
       @item_sales = ActiveSupport::OrderedHash.new
