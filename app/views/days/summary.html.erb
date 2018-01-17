@@ -36,10 +36,26 @@
   </tr>
   <tr>
     <td>
+      Cash Start
+    </td>
+    <td>
+      $<%= @day.cash_start %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Cash End
+    </td>
+    <td>
+      $<%= @day.closed? ? @day.cash_end : ' n/a' %>
+    </td>
+  </tr>
+  <tr>
+    <td>
       Total Cash collected
     </td>
     <td>
-      $<%= @day.closed? ? cash_received(@day) : ' -' %>
+      $<%= @day.closed? ? cash_received(@day) : ' n/a' %>
     </td>
   </tr>
   <tr>
@@ -47,7 +63,7 @@
       Discrepancy
     </td>
     <td>
-      $<%= @day.closed? ? cash_discrepancy(@day) : ' -' %>
+      $<%= @day.closed? ? cash_discrepancy(@day) : ' n/a' %>
     </td>
   </tr>
 
@@ -110,7 +126,7 @@
       <%= @day.small_restock %>
     </td>
     <td>
-      <%= @day.closed? ? @day.small_end : '-' %>
+      <%= @day.closed? ? @day.small_end : 'n/a' %>
     </td>
     <td>
       <%= inventory_used(@day, 'small') %>
@@ -130,7 +146,7 @@
       <%= @day.large_restock %>
     </td>
     <td>
-      <%= @day.closed? ? @day.large_end : '-' %>
+      <%= @day.closed? ? @day.large_end : 'n/a' %>
     </td>
     <td>
       <%= inventory_used(@day, 'large') %>
@@ -150,7 +166,7 @@
       <%= @day.bottle_restock %>
     </td>
     <td>
-      <%= @day.closed? ? @day.bottle_end : '-' %>
+      <%= @day.closed? ? @day.bottle_end : 'n/a' %>
     </td>
     <td>
       <%= inventory_used(@day, 'bottle') %>
@@ -170,7 +186,7 @@
       <%= @day.hot_small_restock %>
     </td>
     <td>
-      <%= @day.closed? ? @day.hot_small_end : '-' %>
+      <%= @day.closed? ? @day.hot_small_end : 'n/a' %>
     </td>
     <td>
       <%= inventory_used(@day, 'hot_small') %>
@@ -190,7 +206,7 @@
       <%= @day.hot_medium_restock %>
     </td>
     <td>
-      <%= @day.closed? ? @day.hot_medium_end : '-' %>
+      <%= @day.closed? ? @day.hot_medium_end : 'n/a' %>
     </td>
     <td>
       <%= inventory_used(@day, 'hot_medium') %>

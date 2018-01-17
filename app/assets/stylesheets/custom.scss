@@ -125,7 +125,7 @@ input[type="submit"]:hover {
   margin: 10px;
   border: 1px solid darkgrey;
   &__misc {
-    height: 200px;
+    height: 225px;
     input {
       width: 4.5em;
       margin-top: 5px;
@@ -160,6 +160,7 @@ input[type="submit"]:hover {
 }
 .total {
   width: 15em;
+  padding-bottom: 0.5em;
   margin-bottom: 1em;
   border-bottom: 1px solid darkgrey;
 }
@@ -178,17 +179,13 @@ input[type="submit"]:hover {
 }
 .permanent_items {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  &__left {
-    right: 2vw;
-  }
-  &__right {
-    left: 2vw;
-  }
-  &__misc {
-
-  }
+}
+.totals {
+  display: inline-block;
+  margin-left: 400px;
+}
+.freebie_div {
+  position: absolute;
 }
 
 // Summary styles
@@ -213,7 +210,7 @@ input[type="submit"]:hover {
   border: 1px solid darkgrey;
   padding: 1em;
   p {
-    font-size: 0.8em;
+    font-size: 0.8
   }
 }
 .item_form_field {

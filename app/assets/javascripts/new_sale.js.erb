@@ -1,6 +1,8 @@
+document.addEventListener("DOMContentLoaded", clearStorage)
+
 //Local variable to change price for vendors
 var vendor = false;
-
+var freebie = false;
 
 // Add EventListeners for item buttons
 var buttons = document.querySelectorAll('.item_button')
@@ -14,11 +16,14 @@ buttons.forEach(function(button) {
 function handleItemClick() {
   var itemName = this.dataset.name
   var itemPrice
-  if (vendor == false){
+  if (vendor == false && freebie == false){
     itemPrice = this.dataset.price;
-  } else {
+  } else if (vendor == true) {
     itemPrice = this.dataset.vendor_price;
     itemName += '(v)'
+  } else {
+    itemPrice = 0;
+    itemName += '(f)'
   }
   if(this.dataset.action == "remove") {
     if (localStorage[itemName]) {
@@ -97,14 +102,28 @@ function calculateChange() {
 // Align permanent buttons to top of table
 var perm_buttons_divs = document.querySelectorAll('.permanent_items');
 var table = document.querySelector('.sale_items')
+var freebie_div = document.querySelector('.freebie_div')
 perm_buttons_divs.forEach(function(div){
   div.style.top = table.offsetTop + 'px'
 })
+freebie_div.style.top = table.offsetTop + 170 + 'px'
+
+var misc_div = document.querySelector('.item_div__misc');
+var clear_div = document.querySelector('.clear_all_div');
+var vendor_div = document.querySelector('.vendor_div');
+var item_divs = document.querySelectorAll('.item_div')
+
+clear_div.style.right = (window.innerWidth - (parseInt(item_divs[0].offsetLeft) + 160)) +  'px'
+freebie_div.style.right = (window.innerWidth - (parseInt(item_divs[0].offsetLeft) + 160)) +  'px'
+vendor_div.style.right = (window.innerWidth - (parseInt(item_divs[1].offsetLeft) + 160)) +  'px'
+misc_div.style.right = (window.innerWidth - (parseInt(item_divs[2].offsetLeft) + 160)) +  'px'
+
 
 // Add misc_item to sale
 var misc_item_buttons = document.querySelectorAll('.misc_item_button');
 var misc_item_price = document.querySelector('#misc_item_price');
 var misc_item_cup_type = document.querySelector('#misc_item_cup_type')
+var misc_item_name = document.querySelector('#misc_item_name')
 misc_item_buttons.forEach(function(button) {
   button.addEventListener('click', handleMiscItemClick)
 })
@@ -113,10 +132,12 @@ function handleMiscItemClick() {
   var itemName
   var itemPrice = parseFloat(misc_item_price.value)
   var cup_type = misc_item_cup_type.value
+  var inputted_name = misc_item_name.value
+  if (!inputted_name) inputted_name = '?';
   if (cup_type){
-    itemName = `Misc. $${itemPrice.toFixed(2)} Item w/${cup_type} ${ cup_type == 'Bottle' ? '' : 'cup'}`;
+    itemName = `Misc. $${itemPrice.toFixed(2)} Item (${inputted_name}) w/${cup_type}  ${ cup_type == 'Bottle' ? '' : 'cup'}`;
   } else {
-    itemName = `Misc. $${itemPrice.toFixed(2)} Item`
+    itemName = `Misc. $${itemPrice.toFixed(2)} Item (${inputted_name})`
   }
   if(this.dataset.action == "remove") {
     if (localStorage[itemName]) {
@@ -143,28 +164,41 @@ function handleMiscItemClick() {
   updatePage()
 }
 
-// toggle the vender prices
-var vendor_price_buttons = document.querySelectorAll('.vendor_price_button')
-var vendor_div = document.querySelector('.vendor_div');
-vendor_price_buttons.forEach(function(button){
-  button.addEventListener('click', toggleVendor)
-})
+// toggle the freebie and vender prices
+vendor_div.addEventListener('click', toggleVendor)
 function toggleVendor() {
-  if (this.dataset.action == 'add') {
+  if (vendor == false) {
     vendor = true;
     vendor_div.style.background = 'green';
+    if (freebie == true) {
+      toggleFreebie()
+    }
   } else {
     vendor = false;
     vendor_div.style.background = '#ffd891';
   }
 }
 
+freebie_div.addEventListener('click', toggleFreebie)
+function toggleFreebie() {
+  if (freebie == false) {
+    freebie = true;
+    freebie_div.style.background = 'green'
+    if (vendor = true) {
+      toggleVendor()
+    }
+  } else {
+    freebie = false;
+    freebie_div.style.background = '#ffd891';
+  }
+
+}
 
 
 
 // clear local storage when clear all button clicked
-var clear_button = document.querySelector('#clear_all')
-clear_button.addEventListener('click', clearStorage)
+
+clear_div.addEventListener('click', clearStorage)
 
 
 

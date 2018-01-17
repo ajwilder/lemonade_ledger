@@ -30,7 +30,7 @@ class DaysController < ApplicationController
     end
     if @day.save
       cookies.signed[:day] = { value:
-        @day.id, expires: 12.hours.from_now }
+        @day.id, expires: 30.hours.from_now }
       redirect_to @day
     else
       @employees = Admin.first.employees
