@@ -45,7 +45,7 @@
 
 
 <%= form_for(@sale) do |f| %>
-<%= f.hidden_field :price, value: '0', class: 'sale_cups' %>
+<%= f.hidden_field :price, class: 'sale_cups' %>
 <%= f.hidden_field :large, value: '0', class: 'sale_cups'  %>
 <%= f.hidden_field :small, value: '0', class: 'sale_cups'  %>
 <%= f.hidden_field :bottle, value: '0', class: 'sale_cups'  %>

@@ -11,9 +11,12 @@
 <h3>This ledger is being used on a different device.</h3>
 <% end %>
 
+
+<% if session[:admin] == Admin.first.password_digest %>
 <div class="home_button">
   <%= button_to "Day Summary", summary_day_path(@day), method: :get %>
 </div>
+<% end %>
 
 <% if current_day && @day == current_day %>
 <div class="home_button">
