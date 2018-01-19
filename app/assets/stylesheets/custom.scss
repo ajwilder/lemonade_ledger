@@ -1,5 +1,6 @@
 $lemonade: #fcf37b;
-$coffee: #cecb9f;
+$hot: #cecb9f;
+$tea: lightpink;
 $water: #d1faff;
 $permanent: #ffd891;
 $add_item: #d6f9c7;
@@ -105,14 +106,17 @@ input[type="submit"]:hover {
 .lemonade {
   background-color: $lemonade;
 }
-.coffee {
-  background-color: $coffee;
+.hot {
+  background-color: $hot;
 }
 .water {
   background-color: $water;
 }
 .permanent {
   background-color: $permanent;
+}
+.tea {
+  background-color: $tea;
 }
 
 .item_div {
