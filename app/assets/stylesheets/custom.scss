@@ -146,11 +146,13 @@ input[type="submit"]:hover {
   }
 }
 .item_button {
+  align-items: flex-start;
   display: inline-block;
   font-size: 2em;
   height: 60px;
   width: 60px;
   margin: 0 5px;
+  -webkit-appearance: none;
 }
 .add_item {
   background-color: $add_item;
