@@ -35,7 +35,7 @@ class AdminController < ApplicationController
 
   def admin_page
     @admin = Admin.find(1)
-    @items = Item.all
+    @items = Item.all.order(:name)
   end
 
   def logout
