@@ -147,7 +147,7 @@ input[type="submit"]:hover {
 }
 .item_button {
   align-items: flex-start;
-  padding: 0 !important; 
+  padding: 0 !important;
   display: inline-block;
   font-size: 2em;
   box-sizing: border-box;
@@ -183,6 +183,7 @@ input[type="submit"]:hover {
   background-color: lightgreen;
 }
 .perm_item_button {
+  padding: 0 !important; 
   font-size: 2em;
   height: 60px;
   width: 60px;
