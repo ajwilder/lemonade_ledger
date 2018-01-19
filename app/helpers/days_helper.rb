@@ -2,7 +2,7 @@ module DaysHelper
 
   def current_day
     if (day_id = cookies.signed[:day])
-      @day = Day.find(day_id)
+      @day = Day.find_by_id(day_id)
     end
   end
 
