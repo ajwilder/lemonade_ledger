@@ -147,8 +147,10 @@ input[type="submit"]:hover {
 }
 .item_button {
   align-items: flex-start;
+  padding: 0;
   display: inline-block;
   font-size: 2em;
+  box-sizing: border-box;
   height: 60px;
   width: 60px;
   margin: 0 5px;
