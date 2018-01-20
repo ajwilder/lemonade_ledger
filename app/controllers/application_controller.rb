@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def current_day
     if (day_id = cookies.signed[:day])
-      @day = Day.find_by_id(day_id)
+      Day.find_by_id(day_id)
     end
   end
 
