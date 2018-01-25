@@ -10,16 +10,16 @@ Item.create!(
   name: "Large Lemonade",
   drink_type: "lemonade",
   cup_type: 'large',
-  price: 4.0,
-  vendor_price: 2.0,
+  price: 5.0,
+  vendor_price: 4.0,
   active: true
 )
 Item.create!(
   name: "Small Lemonade",
   drink_type: "lemonade",
   cup_type: 'small',
-  price: 2.0,
-  vendor_price: 1.0,
+  price: 3.0,
+  vendor_price: 2.5,
   active: true
 )
 Item.create!(
@@ -27,25 +27,154 @@ Item.create!(
   drink_type: "coffee",
   cup_type: 'hot_medium',
   price: 2.5,
-  vendor_price: 1.0,
+  vendor_price: 2.0,
   active: true
 )
 Item.create!(
   name: "Small Coffee",
   drink_type: "coffee",
   cup_type: 'hot_small',
-  price: 1.5,
-  vendor_price: 0.75,
+  price: 2.0,
+  vendor_price: 1.5,
   active: true
 )
 Item.create!(
   name: "Water Bottle",
   drink_type: "water",
   cup_type: 'bottle',
-  price: 1.5,
-  vendor_price: 0.75,
+  price: 1.0,
+  vendor_price: 1.0,
   active: true
 )
+Item.create!(
+  name: "Large Arnold Palmer",
+  drink_type: "lemonade",
+  cup_type: 'large',
+  price: 5.0,
+  vendor_price: 4.0,
+  active: true
+)
+Item.create!(
+  name: "Large Tea",
+  drink_type: "tea",
+  cup_type: 'large',
+  price: 4.0,
+  vendor_price: 3.0,
+  active: true
+)
+Item.create!(
+  name: "Lg Special Lemonade",
+  drink_type: "water",
+  cup_type: 'large',
+  price: 6.5,
+  vendor_price: 5.0,
+  active: true
+)
+Item.create!(
+  name: "Lg Special Tea",
+  drink_type: "tea",
+  cup_type: 'large',
+  price: 5.0,
+  vendor_price: 4.0,
+  active: true
+)
+Item.create!(
+  name: "Med Hot Tea",
+  drink_type: "hot",
+  cup_type: 'hot_medium',
+  price: 2.0,
+  vendor_price: 1.5,
+  active: true
+)
+Item.create!(
+  name: "Medium Chai",
+  drink_type: "hot",
+  cup_type: 'hot_medium',
+  price: 3.5,
+  vendor_price: 3.0,
+  active: true
+)
+Item.create!(
+  name: "Medium Cider",
+  drink_type: "hot",
+  cup_type: 'hot_medium',
+  price: 3.5,
+  vendor_price: 3.0,
+  active: true
+)
+Item.create!(
+  name: "Medium Cocoa",
+  drink_type: "hot",
+  cup_type: 'hot_medium',
+  price: 3.5,
+  vendor_price: 3.0,
+  active: true
+)
+Item.create!(
+  name: "Small Arnold Palmer",
+  drink_type: "lemonade",
+  cup_type: 'small',
+  price: 3.0,
+  vendor_price: 2.5,
+  active: true
+)
+Item.create!(
+  name: "Small chai",
+  drink_type: "hot",
+  cup_type: 'hot_small',
+  price: 3.0,
+  vendor_price: 2.5,
+  active: true
+)
+Item.create!(
+  name: "Small Cider",
+  drink_type: "hot",
+  cup_type: 'hot_small',
+  price: 3.0,
+  vendor_price: 2.5,
+  active: true
+)
+Item.create!(
+  name: "Small Cocoa",
+  drink_type: "hot",
+  cup_type: 'hot_small',
+  price: 3.0,
+  vendor_price: 2.5,
+  active: true
+)
+Item.create!(
+  name: "Small Tea",
+  drink_type: "tea",
+  cup_type: 'small',
+  price: 2.5,
+  vendor_price: 2.0,
+  active: true
+)
+Item.create!(
+  name: "Sm Hot Tea",
+  drink_type: "hot",
+  cup_type: 'hot_small',
+  price: 2.0,
+  vendor_price: 1.5,
+  active: true
+)
+Item.create!(
+  name: "Sm Special Lemonade",
+  drink_type: "lemonade",
+  cup_type: 'small',
+  price: 4.0,
+  vendor_price: 3.5,
+  active: true
+)
+Item.create!(
+  name: "Sm Special Tea",
+  drink_type: "tea",
+  cup_type: 'small',
+  price: 3.5,
+  vendor_price: 3.0,
+  active: true
+)
+
 
 Admin.create!(
   password: 'WillsButt',
