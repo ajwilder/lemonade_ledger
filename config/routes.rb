@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/admin_login', to: 'admin#admin_login'
   post '/admin', to: 'admin#authenticate'
   get '/admin', to: 'admin#admin_page'
-  delete '/admin_logout', to: 'admin#logout'
+  get '/admin_logout', to: 'admin#logout'
   post '/employees', to: 'admin#employees'
   post '/locations', to: 'admin#locations'
   post '/update_admin', to: 'admin#update_admin'

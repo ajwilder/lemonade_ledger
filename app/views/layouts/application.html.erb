@@ -14,6 +14,9 @@
     <% if @day && @day.id && !@day.closed && !(yield(:header_button) == 'no')%>
       <%= button_to "Back to ledger options", day_path(@day), method: :get, class: 'back_ledger', id: 'back_ledger' %>
     <% end %>
+    <% if session[:admin] == Admin.first.password_digest %>
+      <%= button_to "Log Out Admin", admin_logout_path,  method: :get %>
+    <% end %>
     <% if current_day %>
       <span class="header_authentication">Logged in for <%= day_display(current_day) %></span>
     <% end %>

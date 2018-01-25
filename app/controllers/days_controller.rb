@@ -1,5 +1,6 @@
 class DaysController < ApplicationController
   before_action :authenticated
+  before_action :admin_authenticate, only: [:summary]
 
   def new
     @day = Day.new
@@ -95,19 +96,9 @@ class DaysController < ApplicationController
       redirect_to close_page_day_path(@day) and return
     else
       @day.update_attributes(close_day_params)
-      @item_sales = ActiveSupport::OrderedHash.new
-      @day.sales.each do |sale|
-        items = sale.items
-        items.each do |item|
-          if @item_sales.key?(item)
-            @item_sales[item] += 1
-          else
-            @item_sales[item] = 1
-          end
-        end
-      end
+      flash[:info] = "Day is closed"
       cookies.delete(:day)
-      redirect_to summary_day_path(@day)
+      redirect_to root_url
     end
   end
 
