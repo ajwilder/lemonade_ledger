@@ -24,7 +24,7 @@ Item.create!(
 )
 Item.create!(
   name: "Medium Coffee",
-  drink_type: "coffee",
+  drink_type: "hot",
   cup_type: 'hot_medium',
   price: 2.5,
   vendor_price: 2.0,
@@ -32,7 +32,7 @@ Item.create!(
 )
 Item.create!(
   name: "Small Coffee",
-  drink_type: "coffee",
+  drink_type: "hot",
   cup_type: 'hot_small',
   price: 2.0,
   vendor_price: 1.5,

@@ -12,13 +12,13 @@
 
 <div class="item_form_field">
   <%= f.label :cup_type %>
-  <span class="float_right">  <%= f.select :cup_type, options_for_select(Item::Cup_types) %></span>
+  <span class="float_right">  <%= f.select :cup_type, options_for_select(Item::Cup_types, @item.cup_type) %></span>
 
   </div>
 
 <div class="item_form_field">
   <%= f.label :drink_type %>
-  <span class="float_right"><%= f.select :drink_type, options_for_select(Item::Drink_types) %></span>
+  <span class="float_right"><%= f.select :drink_type, options_for_select(Item::Drink_types, @item.drink_type) %></span>
 
 </div>
 
