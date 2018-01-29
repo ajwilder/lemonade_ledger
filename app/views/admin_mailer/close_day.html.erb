@@ -1,0 +1,55 @@
+<h1><%= day_display(@day) %> has been closed</h1>
+
+<%= link_to 'click for summary', @day %>
+
+<table class="summary_table">
+  <tr>
+    <td>
+      Transactions
+    </td>
+    <td>
+      <%= @day.sales.count %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Total Sales
+    </td>
+    <td>
+      $<%= total_sales(@day) %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Cash Start
+    </td>
+    <td>
+      $<%= @day.cash_start %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Cash End
+    </td>
+    <td>
+      $<%= @day.closed? ? @day.cash_end : ' n/a' %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Total Cash collected
+    </td>
+    <td>
+      $<%= @day.closed? ? cash_received(@day) : ' n/a' %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Discrepancy
+    </td>
+    <td>
+      $<%= @day.closed? ? cash_discrepancy(@day) : ' n/a' %>
+    </td>
+  </tr>
+
+</table>

@@ -48,6 +48,7 @@ class DaysController < ApplicationController
     if @day.save
       cookies.signed[:day] = { value:
         @day.id, expires: 30.hours.from_now }
+      AdminMailer.new_day(@day)
       redirect_to @day
     else
       @employees = Admin.first.employees
@@ -144,6 +145,7 @@ class DaysController < ApplicationController
         bottles_invent: @admin.bottles_invent - params[:day][:bottle_restock].to_i
       )
       cookies.delete(:day)
+      AdminMailer.close_day(@day)
       flash[:info] = 'ledger has been closed'
       redirect_to root_url
     else
