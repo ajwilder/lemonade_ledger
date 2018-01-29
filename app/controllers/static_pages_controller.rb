@@ -18,4 +18,8 @@ class StaticPagesController < ApplicationController
       render 'login'
     end
   end
+
+
+
+
 end

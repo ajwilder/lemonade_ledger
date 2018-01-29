@@ -1,0 +1,39 @@
+<h1>Morning Checklist</h1>
+
+<%= form_tag('/am_checklist', method: 'post') do %>
+<div>
+  <div class="form_field">
+    <label for="day_location">Where you at?</label>
+    <%= select_tag(:location, options_for_select(@admin.locations), include_blank: true) %>
+  </div>
+</div>
+
+<div id="city_checklist" class="hidden">
+  <h3>Checklist for Market St.</h3>
+  <% @city_list.each_with_index do |task,index| %>
+  <div class="checkbox">
+    <input type="checkbox" class=" city_checkbox" id="city<%= index %>">
+    <label for="city<%= index %>"><%= task %></label>
+  </div>
+  <% end %>
+</div>
+<div id="farmers_checklist" class="hidden">
+  <h3>Checklist for Farmer's Market</h3>
+  <% @farmers_list.each_with_index do |task,index| %>
+  <div class="checkbox">
+    <input type="checkbox" class="farmers_checkbox" id="farm<%= index %>">
+    <label for="farm<%= index %>"><%= task %></label>
+  </div>
+  <% end %>
+</div>
+
+
+<div id="checklist_submit" class="hidden">
+  <%= submit_tag "Next: Record Initial Inventory" %>
+</div>
+
+<% end %>
+
+
+
+<%= javascript_include_tag 'am_checklist' %>

@@ -1,0 +1,17 @@
+<h1>Closing Checklist</h1>
+
+<div id="closing_checklist">
+  <% @list.each_with_index do |task,index| %>
+  <div class="checkbox">
+    <input type="checkbox" class=" city_checkbox" id="close<%= index %>">
+    <label for="close<%= index %>"><%= task %></label>
+  </div>
+  <% end %>
+</div>
+
+
+<div id="checklist_submit" class="hidden">
+  <%= button_to "Next: Take Final Inventory", close_page_day_path(@day), method: :get, class: 'home_button' %>
+</div>
+
+<%= javascript_include_tag 'pm_checklist' %>

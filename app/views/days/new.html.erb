@@ -4,8 +4,8 @@
 <%= form_for(@day) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="form_field">
-    <label for="day_location">Where you at?</label>
-    <%= f.select(:location, @locations) %>
+    Location: <%= @location %>
+    <%= f.hidden_field :location, value: @location %>
   </div>
 
   <div class="form_field">
@@ -28,6 +28,7 @@
   <div class="form_field">
     <label for="day_large_start">Starting large cups:</label>
     <%= f.number_field :large_start %>
+    <span class="float_left">(<%= tommorrow_count(@previous_day, 'large') %>) &nbsp;   </span>
   </div>
 
 
@@ -35,6 +36,7 @@
 
     <%= f.number_field :small_start %>
     <label for="day_small_start">Starting small cups:</label>
+    <span class="float_left">(<%= tommorrow_count(@previous_day, 'small') %>) &nbsp;  </span>
   </div>
 
 
@@ -42,18 +44,21 @@
 
     <%= f.number_field :bottle_start %>
     <label for="day_bottle_start">Starting water bottles:</label>
+    <span class="float_left">(<%= tommorrow_count(@previous_day, 'bottle')  %>) &nbsp;   </span>
   </div>
 
   <div class="form_field">
 
     <%= f.number_field :hot_medium_start %>
     <label for="day_hot_medium_start">Starting med. hot cups:</label>
+    <span class="float_left">(<%= tommorrow_count(@previous_day, 'hot_medium') %>) &nbsp;  </span>
   </div>
 
   <div class="form_field">
 
     <%= f.number_field :hot_small_start %>
     <label for="day_hot_small_start">Starting small hot cups:</label>
+    <span class="float_left">(<%= tommorrow_count(@previous_day, 'hot_small') %>) &nbsp;  </span>
   </div>
 
   <%= f.submit "Let's start selling" %>

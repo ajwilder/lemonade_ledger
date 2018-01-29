@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120211224) do
+ActiveRecord::Schema.define(version: 20180128174832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20180120211224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.text "farmers_am", default: [], array: true
+    t.text "farmers_pm", default: [], array: true
+    t.text "city_am", default: [], array: true
+    t.text "city_pm", default: [], array: true
+    t.integer "small_invent"
+    t.integer "large_invent"
+    t.integer "hot_small_invent"
+    t.integer "hot_medium_invent"
+    t.integer "bottles_invent"
   end
 
   create_table "days", force: :cascade do |t|
@@ -51,6 +60,11 @@ ActiveRecord::Schema.define(version: 20180120211224) do
     t.integer "hot_small_discrepancy", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "large_emergency_restock", default: 0
+    t.integer "small_emergency_restock", default: 0
+    t.integer "hot_small_emergency_restock", default: 0
+    t.integer "hot_medium_emergency_restock", default: 0
+    t.integer "bottle_emergency_restock", default: 0
   end
 
   create_table "items", force: :cascade do |t|

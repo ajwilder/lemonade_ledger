@@ -30,7 +30,15 @@ module DaysHelper
     if !day.closed?
       return 'n/a'
     else
-      return day["#{item}_end"] - (day["#{item}_start"] + day["#{item}_restock"]  - inventory_used(day, item))
+      return day["#{item}_end"] - (day["#{item}_start"] + day["#{item}_emergency_restock"]  - inventory_used(day, item))
+    end
+  end
+
+  def tommorrow_count(day, item)
+    if !day.closed?
+      return 'n/a'
+    else
+      return day["#{item}_end"] + day["#{item}_restock"]
     end
   end
 

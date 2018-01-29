@@ -54,8 +54,14 @@ p {
 .float_right {
   float: right;
 }
+.float_left {
+  float: left;
+}
 .small_text {
   font-size: 0.7em;
+}
+.hidden {
+  display: none;
 }
 input[type="submit"] {
   cursor: pointer;
@@ -64,6 +70,27 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: lightgrey;
 }
+
+.debug_dump {
+  width: 400px;
+  font-size: 0.7em;
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  border: 1px solid black;
+  @include box_sizing;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+
 
 // Home page styles
 .home_button {
@@ -183,7 +210,7 @@ input[type="submit"]:hover {
   background-color: lightgreen;
 }
 .perm_item_button {
-  padding: 0 !important; 
+  padding: 0 !important;
   font-size: 2em;
   height: 60px;
   width: 60px;
@@ -214,15 +241,19 @@ input[type="submit"]:hover {
 // admin page styles
 .admin {
   h3 {
-    margin: 0;
+    margin: 0 0 10px;
   }
 }
 .admin_div {
-
   border: 1px solid darkgrey;
   padding: 1em;
   p {
     font-size: 0.8
+  }
+  textarea {
+    height: auto;
+    width: 100%;
+    font-size: 1em;
   }
 }
 .item_form_field {
@@ -238,6 +269,16 @@ input[type="submit"]:hover {
     border-bottom: 1px solid darkgrey;
   }
 }
+.inventory {
+  border: 1px solid darkgrey;
+  th {
+    border-bottom: 1px solid darkgrey;
+  }
+  input.admin_inventory {
+    width: 5em;
+  }
+}
+
 
 // flash styles
 .alert {
@@ -255,21 +296,18 @@ input[type="submit"]:hover {
   }
 }
 
-.debug_dump {
-  width: 400px;
-  font-size: 0.7em;
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  border: 1px solid black;
-  @include box_sizing;
-}
-
-#error_explanation {
-  color: red;
-  ul {
-    color: red;
-    margin: 0 0 30px 0;
+.checklist_button {
+  cursor: pointer;
+  padding: 10px;
+  vertical-align: top;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid darkgrey;
+  background-color: lightgrey;
+  margin: 20px;
+  align-items: flex-start;
+  h4 {
+    margin: 0;
   }
 }

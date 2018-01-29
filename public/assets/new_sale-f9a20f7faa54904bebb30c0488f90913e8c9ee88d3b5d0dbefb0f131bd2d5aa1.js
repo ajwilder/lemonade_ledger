@@ -218,3 +218,4 @@ function clearStorage() {
   table.innerHTML = '';
   localStorage.clear()
 }
+;

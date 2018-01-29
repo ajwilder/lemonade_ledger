@@ -13,4 +13,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.precompile += ['new_sale.js.erb', 'custom.scss']
+Rails.application.config.assets.precompile += ['new_sale.js.erb', 'custom.scss', 'am_checklist.js.erb', 'pm_checklist.js.erb']

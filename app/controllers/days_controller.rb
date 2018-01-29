@@ -8,6 +8,22 @@ class DaysController < ApplicationController
     @locations = Admin.first.locations
   end
 
+  def checklist
+    @location = params[:location]
+    @previous_day = Day.find_by(location: @location)
+    @day = Day.new
+    @employees = Admin.first.employees
+    @locations = Admin.first.locations
+    render 'new'
+  end
+
+
+  def am_checklist
+    @admin = Admin.first
+    @farmers_list = @admin.farmers_am
+    @city_list = @admin.city_am
+  end
+
   def index
     @open_days = Day.where(closed: false)
     @closed_days = Day.where(closed: true)
@@ -50,7 +66,6 @@ class DaysController < ApplicationController
   end
 
   def summary
-
     @day = Day.find(params[:id])
     if @day.sales.length == 0
       flash[:danger] = "no sales to summarize yet"
@@ -70,14 +85,27 @@ class DaysController < ApplicationController
     end
   end
 
-  def restock_page
+  def emergency_restock_page
     @day = Day.find(params[:id])
   end
 
-  def restock
-    @day = Day.find(params[:day][:id])
-    @day.update_attributes(restock_params)
-    redirect_to @day
+  def emergency_restock
+    @day = Day.find(params[:id])
+    @admin = Admin.first
+    if @day.update_attributes(emergency_restock_params)
+      flash[:info] = "Inventory updated"
+      @admin.update_attributes(
+        small_invent: @admin.small_invent - params[:day][:small_emergency_restock].to_i,
+        large_invent: @admin.large_invent - params[:day][:large_emergency_restock].to_i,
+        hot_small_invent: @admin.hot_small_invent - params[:day][:hot_small_emergency_restock].to_i,
+        hot_medium_invent: @admin.hot_medium_invent - params[:day][:hot_medium_emergency_restock].to_i,
+        bottles_invent: @admin.bottles_invent - params[:day][:bottle_emergency_restock].to_i
+      )
+      redirect_to @day
+    else
+      flash[:danger] = "Inventory Updated failed"
+      redirect_to @day
+    end
   end
 
   def close_page
@@ -96,9 +124,42 @@ class DaysController < ApplicationController
       redirect_to close_page_day_path(@day) and return
     else
       @day.update_attributes(close_day_params)
-      flash[:info] = "Day is closed"
+      redirect_to final_restock_page_day_path(@day)
+    end
+  end
+
+  def final_restock_page
+    @day = Day.find(params[:id])
+  end
+
+  def final_restock
+    @day = Day.find(params[:id])
+    @admin = Admin.first
+    if @day.update_attributes(final_restock_params)
+      @admin.update_attributes(
+        small_invent: @admin.small_invent - params[:day][:small_restock].to_i,
+        large_invent: @admin.large_invent - params[:day][:large_restock].to_i,
+        hot_small_invent: @admin.hot_small_invent - params[:day][:hot_small_restock].to_i,
+        hot_medium_invent: @admin.hot_medium_invent - params[:day][:hot_medium_restock].to_i,
+        bottles_invent: @admin.bottles_invent - params[:day][:bottle_restock].to_i
+      )
       cookies.delete(:day)
+      flash[:info] = 'ledger has been closed'
       redirect_to root_url
+    else
+      flash[:danger] = "Final inventory update failed.  Try again."
+      redirect_to final_restock_page_day_path(@day)
+    end
+
+  end
+
+  def pm_checklist
+    @day = Day.find(params[:id])
+    @admin = Admin.first
+    if @day.location == "Market Street"
+      @list = @admin.city_pm
+    else
+      @list = @admin.farmers_pm
     end
   end
 
@@ -108,12 +169,16 @@ class DaysController < ApplicationController
       params.require(:day).permit(:cash_start, :location, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start)
     end
 
-    def restock_params
-      params.require(:day).permit(:cash_restock, :large_restock, :small_restock, :bottle_restock, :hot_medium_restock, :hot_small_restock)
+    def final_restock_params
+      params.require(:day).permit(:large_restock, :closed, :small_restock, :bottle_restock, :hot_medium_restock, :hot_small_restock)
+    end
+
+    def emergency_restock_params
+      params.require(:day).permit(:large_emergency_restock, :small_emergency_restock, :bottle_emergency_restock, :hot_medium_emergency_restock, :hot_small_emergency_restock)
     end
 
     def close_day_params
-      params.require(:day).permit(:cash_end, :closed, :large_end, :small_end, :bottle_end, :hot_medium_end, :hot_small_end)
+      params.require(:day).permit(:cash_end, :large_end, :small_end, :bottle_end, :hot_medium_end, :hot_small_end)
     end
 
 end

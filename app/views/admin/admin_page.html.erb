@@ -2,6 +2,112 @@
 <div class="admin">
   <h1>Admin</h1>
   <div class="admin_div">
+    <h3>Current Inventory</h3>
+    <%= form_tag('/inventory', method: 'post') do %>
+      <table class="inventory">
+        <tr>
+          <th>
+            Item
+          </th>
+          <th>
+            Amount
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Small Cups
+          </td>
+          <td>
+            <%= number_field_tag :small, @admin.small_invent, class: 'admin_inventory' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Large Cups
+          </td>
+          <td>
+            <%= number_field_tag :large, @admin.large_invent, class: 'admin_inventory' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Small hot cups
+          </td>
+          <td>
+            <%= number_field_tag :hot_small, @admin.hot_small_invent, class: 'admin_inventory' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Medium Hot Cups
+          </td>
+          <td>
+            <%= number_field_tag :hot_medium, @admin.hot_medium_invent, class: 'admin_inventory' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Water Bottles
+          </td>
+          <td>
+            <%= number_field_tag :bottle, @admin.bottles_invent, class: 'admin_inventory' %>
+          </td>
+        </tr>
+      </table>
+
+      <%= submit_tag "Update Inventory" %>
+
+
+    <% end %>
+
+
+  </div>
+  <div class="admin_div">
+    <h3>View Ledgers</h3>
+      Last 10 ledgers:
+      <ul>
+        <% @ledgers.each do |ledger| %>
+          <li>
+            <%= link_to day_display(ledger), ledger %> <%= ledger.closed? ? '(closed)' : '(open)' %>
+          </li>
+        <% end %>
+      </ul>
+      <%= link_to 'View All Ledgers', days_path %>
+  </div>
+  <div class="admin_div">
+    <h3>Update Checklists</h3>
+    <%= form_tag('/checklists', method: 'post') do %>
+      <h4>Farmers AM Checklist</h4>
+        <%= text_area_tag :farmers_am, @admin.farmers_am.join('; ')  %>
+      <h4>Farmers PM Checklist</h4>
+        <%= text_area_tag :farmers_pm, @admin.farmers_pm.join('; ')  %>
+      <h4>City AM Checklist</h4>
+        <%= text_area_tag :city_am, @admin.city_am.join('; ')  %>
+      <h4>City PM Checklist</h4>
+        <%= text_area_tag :city_pm, @admin.city_pm.join('; ')  %>
+        <%= submit_tag "Update checklists" %>
+
+
+    <% end %>
+
+
+  </div>
+  <div class="admin_div">
+    <h3>Update Items</h3>
+    <ul>
+      <% @items.each do |item| %>
+        <li>
+          <%= link_to item.name, edit_item_path(item) %>
+          <%= link_to "Delete Item", delete_item_path(item), method: :delete, class: 'float_right' %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "New Item", new_item_path %>
+      </li>
+    </ul>
+    <%= link_to "View Properties of All Items", items_path %>
+  </div>
+  <div class="admin_div">
     <h3>Update Employees</h3>
     <%= form_tag('/employees', method: 'post') do %>
       <div class="form_field">
@@ -40,23 +146,6 @@
     <% end %>
   </div>
   <div class="admin_div">
-    <h3>Update Items</h3>
-    <ul>
-      <% @items.each do |item| %>
-        <li>
-          <%= link_to item.name, edit_item_path(item) %>
-          <%= link_to "Delete Item", delete_item_path(item), method: :delete, class: 'float_right' %>
-        </li>
-      <% end %>
-      <li>
-        <%= link_to "New Item", new_item_path %>
-      </li>
-      <li>
-        <%= link_to "View Properties of All Items", items_path %>
-      </li>
-    </ul>
-  </div>
-  <div class="admin_div">
     <h3>Update Admin Password</h3>
     <%= form_tag('/update_admin', method: 'post') do |f| %>
     <div>
@@ -84,10 +173,7 @@
     </p>
 
   </div>
-  <div class="admin_div">
-    <h3>View All Ledgers</h3>
-      <%= link_to 'All Ledgers', days_path %>
-  </div>
+
 </div>
 
 

@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
 
-  patch '/close', to: 'days#close'
-  patch '/restock', to: 'days#restock'
+
+  get '/am_checklist', to: 'days#am_checklist'
+  post '/am_checklist', to: 'days#checklist'
   resources :days do
     member do
-      get :summary, :restock_page, :close_page
+      get :summary, :emergency_restock_page, :close_page, :pm_checklist, :final_restock_page
+      patch '/emergency_restock', to: 'days#emergency_restock'
+      patch '/final_restock', to: 'days#final_restock'
+      patch '/close', to: 'days#close'
     end
   end
 
@@ -24,6 +28,9 @@ Rails.application.routes.draw do
   get '/login', to: 'static_pages#login'
   post '/login', to: 'static_pages#authenticate'
 
+
+
+
   # Admin Routes
   get '/admin_login', to: 'admin#admin_login'
   post '/admin', to: 'admin#authenticate'
@@ -32,5 +39,7 @@ Rails.application.routes.draw do
   post '/employees', to: 'admin#employees'
   post '/locations', to: 'admin#locations'
   post '/update_admin', to: 'admin#update_admin'
+  post '/inventory', to: 'admin#inventory'
+  post '/checklists', to: 'admin#checklists'
 
 end

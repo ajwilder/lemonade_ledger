@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_action :authenticated
-  before_action :admin_authenticate, only: [:admin_page, :employees, :locations]
+  before_action :admin_authenticate, only: [:admin_page, :employees, :locations, :inventory, :checklists]
 
   def admin_login
 
@@ -36,6 +36,7 @@ class AdminController < ApplicationController
   def admin_page
     @admin = Admin.find(1)
     @items = Item.all.order(:name)
+    @ledgers = Day.all.take(10)
   end
 
   def logout
@@ -84,6 +85,45 @@ class AdminController < ApplicationController
       render '/admin'
     end
   end
+
+  def inventory
+    @admin = Admin.first
+    if @admin.update_attributes(small_invent: params[:small], large_invent: params[:large], hot_small_invent: params[:hot_small], hot_medium_invent: params[:hot_medium], bottles_invent: params[:bottle])
+      flash[:info] = "Inventory updated"
+      redirect_to '/admin'
+    else
+      flash[:danger] = "Inventory update failed"
+      redirect_to '/admin'
+    end
+  end
+
+  def checklists
+    @admin = Admin.first
+    @admin.city_am = []
+    @admin.city_pm = []
+    @admin.farmers_am = []
+    @admin.farmers_pm = []
+    params[:city_am].split('; ').each do |task|
+      @admin.city_am << task
+    end
+    params[:city_pm].split('; ').each do |task|
+      @admin.city_pm << task
+    end
+    params[:farmers_pm].split('; ').each do |task|
+      @admin.farmers_pm << task
+    end
+    params[:farmers_am].split('; ').each do |task|
+      @admin.farmers_am << task
+    end
+    if @admin.save
+      flash[:info] = 'Checklists updated'
+      redirect_to '/admin'
+    else
+      flash[:danger] = 'Checklist update failed'
+      redirect_to '/admin'
+    end
+  end
+
 
 
   private

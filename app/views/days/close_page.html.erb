@@ -1,9 +1,9 @@
 <% provide(:title, "Close #{day_display(@day)}") %>
 
 
-<h1>Close <%= day_display(@day) %></h1>
+<h1>Final Inventory for <%= day_display(@day) %></h1>
 
-<%= form_for(@day, url:'/close') do |f| %>
+<%= form_for(@day, url: close_day_path(@day)) do |f| %>
 
 <%= render 'shared/error_messages', object: f.object %>
 
@@ -43,7 +43,7 @@
 <%= f.hidden_field :closed, value: true %>
 <%= f.hidden_field :id %>
 
-<%= f.submit "Close out this day" %>
+<%= f.submit "Next: Restock for tomorrow" %>
 
 
 <% end %>

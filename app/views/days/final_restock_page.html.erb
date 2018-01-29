@@ -1,8 +1,8 @@
 <% provide(:title, "Restock #{day_display(@day)}") %>
 
-<h1>Restock <%= day_display(@day) %></h1>
+<h1>Restock <%= @day.location %> For Tomorrow</h1>
 
-<%= form_for(@day, url:'/restock') do |f| %>
+<%= form_for(@day, url: final_restock_day_path(@day)) do |f| %>
 
 <%= render 'shared/error_messages', object: f.object %>
 
@@ -34,9 +34,9 @@
 </div>
 
 <%= f.hidden_field :closed, value: true %>
-<%= f.hidden_field :id %>
 
-<%= f.submit "Update Ledger" %>
+
+<%= f.submit "Close Day" %>
 
 
 <% end %>

@@ -16,7 +16,7 @@
       <%= button_to "Log Out Admin", admin_logout_path,  method: :get %>
     <% end %>
     <% if current_day && !(yield(:header_button) == 'no') %>
-      <%= button_to day_display(current_day), current_day, method: :get %>
+      <%= button_to day_display(current_day), current_day, method: :get, id: 'back_ledger' %>
     <% end %>
   </header>
   <body>

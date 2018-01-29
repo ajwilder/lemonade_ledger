@@ -20,9 +20,9 @@
 
 <% if current_day && @day == current_day %>
 <div class="home_button">
-  <%= button_to "Emergency Restock", restock_page_day_path(@day), method: :get %>
+  <%= button_to "Emergency Restock", emergency_restock_page_day_path(@day), method: :get %>
 </div>
 <% end %>
 <div class="home_button">
-  <%= button_to "Close Day", close_page_day_path(@day), method: :get %>
+  <%= button_to "Close Day", pm_checklist_day_path(@day), method: :get %>
 </div>
