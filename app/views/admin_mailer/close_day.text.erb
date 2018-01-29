@@ -1,1 +1,1 @@
-<h1><%= day_display(@day) %> has been closed</h1>
+<h1><%= @day.created_at.strftime("%m/%d").to_s + " " +  @day.location %> has been closed</h1>

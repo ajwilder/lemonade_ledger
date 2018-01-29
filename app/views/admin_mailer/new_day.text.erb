@@ -4,4 +4,4 @@ New Ledger Opened
   Hey Desiree,
 
 
-  A new ledger was opened for <%= day_display(@day) %>
+  A new ledger was opened for <%= @day.created_at.strftime("%m/%d").to_s + " " +  @day.location %>

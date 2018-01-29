@@ -1,4 +1,4 @@
-<h1><%= day_display(@day) %> has been closed</h1>
+<h1><%= @day.created_at.strftime("%m/%d").to_s + " " +  @day.location %> has been closed</h1>
 
 <%= link_to 'click for summary', @day %>
 
@@ -16,7 +16,7 @@
       Total Sales
     </td>
     <td>
-      $<%= total_sales(@day) %>
+      $<%= '%.2f' % (@day.sales.collect {|sale| sale.price }.reduce(:+)).round(2)%>
     </td>
   </tr>
   <tr>
@@ -40,7 +40,7 @@
       Total Cash collected
     </td>
     <td>
-      $<%= @day.closed? ? cash_received(@day) : ' n/a' %>
+      $<%= '%.2f' % (@day.cash_end - @day.cash_start).round(2) %>
     </td>
   </tr>
   <tr>
@@ -48,7 +48,7 @@
       Discrepancy
     </td>
     <td>
-      $<%= @day.closed? ? cash_discrepancy(@day) : ' n/a' %>
+      $<%= '%.2f' % (@day.cash_end - @day.cash_start).round(2) %>
     </td>
   </tr>
 
