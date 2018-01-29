@@ -3,9 +3,6 @@ class DaysController < ApplicationController
   before_action :admin_authenticate, only: [:summary]
 
   def new
-    @day = Day.new
-    @employees = Admin.first.employees
-    @locations = Admin.first.locations
   end
 
   def checklist
