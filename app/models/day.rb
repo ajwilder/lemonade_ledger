@@ -4,6 +4,7 @@ class Day < ApplicationRecord
   validates :cash_start, presence: true
   validates :large_start, presence: true
   validates :small_start, presence: true
+  default_scope -> { order(created_at: :desc) }
 
 
 

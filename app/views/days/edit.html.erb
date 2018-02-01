@@ -1,12 +1,9 @@
 <% provide(:title, "New Day") %>
-<h1>Admin edit start counts</h1>
+<h1>Admin edit start counts for <%= day_display(@day) %></h1>
 
 <%= form_for(@day) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="form_field">
-    Location: <%= @location %>
-    <%= f.hidden_field :location, value: @location %>
-  </div>
+
 
 
 

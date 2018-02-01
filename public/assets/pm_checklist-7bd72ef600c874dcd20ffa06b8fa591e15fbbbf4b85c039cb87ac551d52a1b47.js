@@ -23,3 +23,4 @@ document.querySelector('#initials_input').addEventListener('input', function(){
     document.querySelector('#checklist_submit').classList.remove('hidden')
   }, 1000)
 } )
+;

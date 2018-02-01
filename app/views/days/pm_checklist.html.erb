@@ -8,10 +8,16 @@
   </div>
   <% end %>
 </div>
+<div class="initials hidden">
+  <label for="initials_input">Initials:</label>
+  <input type="text" id="initials_input" />
+</div>
 
 
 <div id="checklist_submit" class="hidden">
   <%= button_to "Next: Take Final Inventory", close_page_day_path(@day), method: :get, class: 'home_button' %>
 </div>
+
+
 
 <%= javascript_include_tag 'pm_checklist' %>

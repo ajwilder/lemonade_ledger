@@ -56,6 +56,7 @@ class DaysController < ApplicationController
 
   def edit
     @day = Day.find(params[:id])
+
   end
 
   def update
