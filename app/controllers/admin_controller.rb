@@ -36,7 +36,7 @@ class AdminController < ApplicationController
   def admin_page
     @admin = Admin.find(1)
     @items = Item.all.order(:name)
-    @ledgers = Day.all.take(10)
+    @ledgers = Day.all.order(:created_at).reverse_order.take(10)
   end
 
   def logout

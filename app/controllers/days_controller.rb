@@ -1,6 +1,6 @@
 class DaysController < ApplicationController
   before_action :authenticated
-  before_action :admin_authenticate, only: [:summary]
+  before_action :admin_authenticate, only: [:summary, :edit, :update]
 
   def new
   end
@@ -60,7 +60,13 @@ class DaysController < ApplicationController
 
   def update
     @day = Day.find(params[:id])
-    @day.update_attributes()
+    if @day.update_attributes(update_day_params)
+      flash[:info] = 'Ledger updated by admin'
+      redirect_to '/admin'
+    else
+      flash[:danger] = 'Update failed'
+      redirect_to '/admin'
+    end
   end
 
   def summary
@@ -166,6 +172,10 @@ class DaysController < ApplicationController
 
     def new_day_params
       params.require(:day).permit(:cash_start, :location, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start)
+    end
+
+    def update_day_params
+      params.require(:day).permit(:cash_start, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start)
     end
 
     def final_restock_params

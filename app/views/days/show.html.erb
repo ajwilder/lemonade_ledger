@@ -16,6 +16,10 @@
 <div class="home_button">
   <%= button_to "Day Summary", summary_day_path(@day), method: :get %>
 </div>
+
+<div class="home_button">
+  <%= button_to "Admin Edit Start Counts", edit_day_path(@day), method: :get %>
+</div>
 <% end %>
 
 <% if current_day && @day == current_day %>
