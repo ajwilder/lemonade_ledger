@@ -1,0 +1,410 @@
+/* line 16, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+body {
+  font-size: 17px;
+  font-family: Helvetica;
+}
+
+/* line 20, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+h1 {
+  margin-top: 0;
+}
+
+/* line 23, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+h2 {
+  margin-bottom: 4px;
+  text-decoration: underline;
+}
+
+/* line 27, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+ul {
+  list-style: none;
+  margin-top: 0;
+}
+
+/* line 31, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.content_container {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  align-items: center;
+}
+
+/* line 38, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+input {
+  font-size: 1em;
+  border-radius: 3px;
+}
+
+/* line 43, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+button {
+  background-color: lightgrey;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+/* line 48, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+p {
+  margin: 0.3em;
+}
+
+/* line 51, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.checkbox {
+  padding-left: 15px;
+}
+
+/* line 54, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.float_right {
+  float: right;
+}
+
+/* line 57, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.float_left {
+  float: left;
+}
+
+/* line 60, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.small_text {
+  font-size: 0.7em;
+}
+
+/* line 63, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.hidden {
+  display: none;
+}
+
+/* line 66, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+input[type="submit"] {
+  cursor: pointer;
+  display: block;
+}
+
+/* line 70, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+input[type="submit"]:hover {
+  background-color: lightgrey;
+}
+
+/* line 74, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.debug_dump {
+  width: 400px;
+  font-size: 0.7em;
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  border: 1px solid black;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 85, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+#error_explanation {
+  color: red;
+}
+/* line 87, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+#error_explanation ul {
+  color: red;
+  margin: 0 0 30px 0;
+}
+
+/* line 96, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.home_button {
+  margin: 1em;
+}
+
+/* line 102, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.header form {
+  display: inline;
+}
+/* line 104, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.header form input[type="submit"] {
+  cursor: pointer;
+  display: inline;
+}
+/* line 109, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.header_authentication {
+  float: right;
+  font-size: 0.7em;
+}
+
+/* line 116, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.form_field {
+  margin: 15px 0;
+}
+/* line 118, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.form_field > input {
+  float: right;
+  width: 4.5em;
+  margin-left: 5px;
+}
+/* line 123, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.form_field .field_with_errors {
+  float: right;
+  display: inline-block;
+  color: red;
+}
+/* line 127, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.form_field .field_with_errors > input {
+  width: 3em;
+  margin-left: 5px;
+}
+
+/* line 135, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.lemonade {
+  background-color: #fcf37b;
+}
+
+/* line 138, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.hot {
+  background-color: #cecb9f;
+}
+
+/* line 141, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.water {
+  background-color: #d1faff;
+}
+
+/* line 144, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.permanent {
+  background-color: #ffd891;
+}
+
+/* line 147, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.tea {
+  background-color: lightpink;
+}
+
+/* line 151, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.item_div {
+  vertical-align: top;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+  border: 1px solid darkgrey;
+}
+/* line 160, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.item_div__misc {
+  height: 225px;
+}
+/* line 162, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.item_div__misc input {
+  width: 4.5em;
+  margin-top: 5px;
+}
+/* line 166, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.item_div__misc select {
+  width: 5.5em;
+}
+/* line 169, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.item_div__misc label {
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+/* line 175, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.item_button {
+  align-items: flex-start;
+  padding: 0 !important;
+  display: inline-block;
+  font-size: 2em;
+  box-sizing: border-box;
+  height: 60px;
+  width: 60px;
+  margin: 0 5px;
+  -webkit-appearance: none;
+}
+
+/* line 186, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.add_item {
+  background-color: #d6f9c7;
+}
+
+/* line 189, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.remove_item {
+  background-color: #f9dbc7;
+}
+
+/* line 192, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.sale_items {
+  width: 15em;
+  margin: 1em;
+}
+/* line 195, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.sale_items th {
+  border-bottom: 1px solid darkgrey;
+}
+
+/* line 199, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.total {
+  width: 15em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid darkgrey;
+}
+
+/* line 205, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+#cash_tendered {
+  width: 4.5em;
+}
+
+/* line 208, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+#sale_submit {
+  padding: 3em;
+  background-color: lightgreen;
+}
+
+/* line 212, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.perm_item_button {
+  padding: 0 !important;
+  font-size: 2em;
+  height: 60px;
+  width: 60px;
+  margin: 0 5px;
+}
+
+/* line 219, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.permanent_items {
+  position: absolute;
+}
+
+/* line 222, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.totals {
+  display: inline-block;
+  margin-left: 400px;
+}
+
+/* line 226, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.freebie_div {
+  position: absolute;
+}
+
+/* line 231, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.summary_table {
+  width: 40em;
+  text-align: left;
+  border: 1px solid darkgrey;
+  margin-bottom: 1em;
+}
+/* line 236, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.summary_table th {
+  border: 1px solid darkgrey;
+}
+
+/* line 243, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.admin h3 {
+  margin: 0 0 10px;
+}
+
+/* line 247, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.admin_div {
+  border: 1px solid darkgrey;
+  padding: 1em;
+}
+/* line 250, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.admin_div p {
+  font-size: 0.8;
+}
+/* line 253, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.admin_div textarea {
+  height: auto;
+  width: 100%;
+  font-size: 1em;
+}
+
+/* line 259, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.item_form_field {
+  margin-bottom: 0.5em;
+}
+/* line 261, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.item_form_field label {
+  margin-right: 4px;
+}
+
+/* line 265, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.items_index {
+  width: 700px;
+  border: 1px solid darkgrey;
+}
+/* line 268, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.items_index th {
+  border-bottom: 1px solid darkgrey;
+}
+
+/* line 272, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.inventory {
+  border: 1px solid darkgrey;
+}
+/* line 274, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.inventory th {
+  border-bottom: 1px solid darkgrey;
+}
+/* line 277, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.inventory input.admin_inventory {
+  width: 5em;
+}
+
+/* line 284, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.alert {
+  align-items: center;
+  text-align: center;
+  width: 100vw;
+  margin: 1em 0;
+  padding: 1em 0;
+  font-size: 1em;
+}
+/* line 291, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.alert-danger {
+  border: 1px solid red;
+}
+/* line 294, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.alert-info {
+  border: 1px solid green;
+}
+
+/* line 299, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.checklist_button {
+  cursor: pointer;
+  padding: 10px;
+  vertical-align: top;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid darkgrey;
+  background-color: lightgrey;
+  margin: 20px;
+  align-items: flex-start;
+}
+/* line 310, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.checklist_button h4 {
+  margin: 0;
+}
+
+/* line 315, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.form_submit {
+  margin: 10px;
+}
+
+/* line 319, /Users/alanwilder/Documents/Codes/Lemonade/ledger/app/assets/stylesheets/custom.scss */
+.note_field {
+  width: 30em;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+

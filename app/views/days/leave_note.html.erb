@@ -1,0 +1,9 @@
+<h1>Add Note for Desiree</h1>
+
+
+<%= form_for(@day, url: leave_note_day_path(@day)) do |f| %>
+
+<label for="note">Note:</label>
+<%= text_field_tag "note", nil, { class: 'note_field', autocomplete: 'off'} %>
+    <%= submit_tag "Submit", { class: 'form_submit'} %>
+<% end %>

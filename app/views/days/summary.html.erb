@@ -9,12 +9,32 @@
   <strong>This ledger is still open.</strong>
 </p>
 <% end %>
+<table class="summary_table">
+  <tr>
+    <td>
+      Employees:
+    </td>
+    <td>
+      <%= @day.employees.join(',') %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Notes:
+    </td>
+    <td>
+      <ol>
+        <% @day.notes.each do |note| %>
+          <li>
+            <%= note %>
+          </li>
+        <% end %>
+      </ol>
+    </td>
 
-<p>
-  Employees:
-  <%= @day.employees.join(',') %>
+  </tr>
+</table>
 
-</p>
 
 
 <table class="summary_table">

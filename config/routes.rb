@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   post '/am_checklist', to: 'days#checklist'
   resources :days do
     member do
-      get :summary, :emergency_restock_page, :close_page, :pm_checklist, :final_restock_page
+      get :summary, :emergency_restock_page, :close_page, :pm_checklist, :final_restock_page, :leave_note
       patch '/emergency_restock', to: 'days#emergency_restock'
       patch '/final_restock', to: 'days#final_restock'
       patch '/close', to: 'days#close'
+      patch '/leave_note', to: 'days#note'
     end
   end
 

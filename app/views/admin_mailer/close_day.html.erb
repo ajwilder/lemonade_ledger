@@ -1,6 +1,6 @@
 <h1><%= @day.created_at.strftime("%m/%d").to_s + " " +  @day.location %> has been closed</h1>
 
-<%= link_to 'click for summary', @day %>
+<%= link_to 'click for summary', day_url(@day) %>
 
 <table class="summary_table">
   <tr>
@@ -48,8 +48,19 @@
       Discrepancy
     </td>
     <td>
-      $<%= '%.2f' % (@day.cash_end - @day.cash_start).round(2) %>
+      $<%= '%.2f' % (@day.cash_end - @day.cash_start - (@day.sales.collect {|sale| sale.price }.reduce(:+))).round(2) %>
     </td>
   </tr>
 
 </table>
+
+<p>
+  Notes:
+</p>
+<ul>
+  <% @day.notes.each do |note| %>
+    <li>
+      <%= note %>
+    </li>
+  <% end %>
+</ul>

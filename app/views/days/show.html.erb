@@ -4,13 +4,16 @@
 <h1>Ledger for <%= day_display(@day) %></h1>
 
 <% if current_day && @day == current_day %>
-<div class="home_button">
-  <%= button_to "New Sale", new_sale_path, method: :get %>
-</div>
+  <div class="home_button">
+    <%= button_to "New Sale", new_sale_path, method: :get %>
+  </div>
 <% else %>
-<h3>This ledger is being used on a different device.</h3>
+    <h3>This ledger is being used on a different device.</h3>
 <% end %>
 
+<div class="home_button">
+  <%= button_to "Leave Note for Desiree", leave_note_day_path(@day), method: :get %>
+</div>
 
 <% if session[:admin] == Admin.first.password_digest %>
 <div class="home_button">

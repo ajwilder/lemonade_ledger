@@ -169,6 +169,22 @@ class DaysController < ApplicationController
     end
   end
 
+  def leave_note
+    @day = Day.find(params[:id])
+  end
+
+  def note
+    @day = Day.find(params[:id])
+    @day.notes << params[:note]
+    if @day.save
+      flash[:info] = 'Note saved'
+      redirect_to @day
+    else
+      flash[:danger] = 'note not saved'
+      redirect_to @day
+    end
+  end
+
   private
 
     def new_day_params
