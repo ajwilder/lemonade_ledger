@@ -1,6 +1,6 @@
 <h1><%= @day.created_at.strftime("%m/%d").to_s + " " +  @day.location %> has been closed</h1>
 
-<%= link_to 'click for summary', day_url(@day) %>
+<%= link_to 'click for summary', summary_day_url(@day) %>
 
 <table class="summary_table">
   <tr>
