@@ -76,6 +76,7 @@ class DaysController < ApplicationController
       flash[:danger] = "no sales to summarize yet"
       redirect_to @day
     end
+    @sales = @day.sales.order(:created_at)
 
     @item_sales = {}
     @day.sales.each do |sale|

@@ -277,7 +277,7 @@
   <h2>All Sales</h2>
   <ul>
     <% count = 1 %>
-    <% @day.sales.each do |sale| %>
+    <% @sales.each do |sale| %>
       <li>
         <%= count.ordinalize %> sale: <%= (sale.created_at - 5.hours).strftime("%I:%M%p")  %>
           <ul>
