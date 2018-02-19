@@ -2,10 +2,11 @@
 
 <h1>Lemonade Ledger Home</h1>
 
-<% if !current_day %>
-<%= button_to "It's a new day!", am_checklist_path, method: :get, class: 'home_button' %>
-<% else %>
+<% if !current_day.nil? %>
 <%= button_to day_display(current_day), current_day, method: :get, class: 'home_button' %>
+<% else %>
+
+<%= button_to "It's a new day!", am_checklist_path, method: :get, class: 'home_button' %>
 <% end %>
 
 <%= button_to "Admin Page", admin_login_path, method: :get, class: 'home_button' %>

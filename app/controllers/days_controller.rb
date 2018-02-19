@@ -11,6 +11,7 @@ class DaysController < ApplicationController
     @day = Day.new
     @employees = Admin.first.employees
     @locations = Admin.first.locations
+    @date = Time.new.strftime("%m/%d/%y")
     render 'new'
   end
 
@@ -43,8 +44,11 @@ class DaysController < ApplicationController
       end
     end
     if @day.save
+      if !current_day.nil?
+        cookies.delete(:day)
+      end
       cookies.signed[:day] = { value:
-        @day.id, expires: 30.hours.from_now }
+        @day.id, expires: 16.hours.from_now }
       AdminMailer.new_day(@day).deliver_now
       redirect_to @day
     else
@@ -116,10 +120,16 @@ class DaysController < ApplicationController
 
   def close_page
     @day = Day.find(params[:id])
+    @admin = Admin.first
+    if @day.location == "Market Street"
+      @list = @admin.city_pm
+    else
+      @list = @admin.farmers_pm
+    end
   end
 
   def close
-    @day = Day.find(params[:day][:id])
+    @day = Day.find(params[:id])
     if @day.sales.length == 0
       @day.destroy
       cookies.delete(:day)
@@ -189,7 +199,7 @@ class DaysController < ApplicationController
   private
 
     def new_day_params
-      params.require(:day).permit(:cash_start, :location, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start)
+      params.require(:day).permit(:cash_start, :location, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start, :date)
     end
 
     def update_day_params

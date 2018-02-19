@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202170423) do
+ActiveRecord::Schema.define(version: 20180218163523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20180202170423) do
     t.integer "hot_medium_emergency_restock", default: 0
     t.integer "bottle_emergency_restock", default: 0
     t.text "notes", default: [], array: true
+    t.string "date"
+    t.index ["location", "date"], name: "index_days_on_location_and_date", unique: true
   end
 
   create_table "items", force: :cascade do |t|

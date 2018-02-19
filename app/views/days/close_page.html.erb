@@ -1,12 +1,23 @@
 <% provide(:title, "Close #{day_display(@day)}") %>
 
 
-<h1>Final Inventory for <%= day_display(@day) %></h1>
+<h1>Checklist and Final Inventory for <%= day_display(@day) %></h1>
+
 
 <%= form_for(@day, url: close_day_path(@day)) do |f| %>
 
 <%= render 'shared/error_messages', object: f.object %>
+<h3>Checklist:</h3>
+<div id="closing_checklist">
+  <% @list.each_with_index do |task,index| %>
+  <div class="checkbox">
+    <input type="checkbox" class=" city_checkbox" id="close<%= index %>">
+    <label for="close<%= index %>"><%= task %></label>
+  </div>
+  <% end %>
+</div>
 
+<h3>Final Inventory:</h3>
 <div class="form_field">
   <label for="day_cash_end">Ending cash:</label>
   <%= f.number_field :cash_end, value: number_to_currency(0.0, delimiter: '', unit: ''), step: 0.01 %>
@@ -43,7 +54,17 @@
 <%= f.hidden_field :closed, value: true %>
 <%= f.hidden_field :id %>
 
-<%= f.submit "Next: Restock for tomorrow" %>
+<div class="initials hidden">
+  <label for="initials_input">Initials:</label>
+  <input type="text" id="initials_input" />
+</div>
+
+<div id="checklist_submit" class="hidden form_submit">
+  <%= f.submit "Next: Restock for tomorrow" %>
+</div>
+
 
 
 <% end %>
+
+<%= javascript_include_tag 'pm_checklist' %>
