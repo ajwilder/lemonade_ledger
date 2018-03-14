@@ -11,7 +11,8 @@ class DaysController < ApplicationController
     @day = Day.new
     @employees = Admin.first.employees
     @locations = Admin.first.locations
-    @date = Time.new.strftime("%m/%d/%y")
+    Time.zone = "America/New_York"
+    @date = Time.new.in_time_zone.strftime("%m/%d/%y")
     render 'new'
   end
 

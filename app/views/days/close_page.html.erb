@@ -23,6 +23,10 @@
   <%= f.number_field :cash_end, value: number_to_currency(0.0, delimiter: '', unit: ''), step: 0.01 %>
 </div>
 
+<div class="form_field">
+  <%= f.number_field :small_end, value: ''  %>
+  <label for="day_small_end">Ending small cups:</label>
+</div>
 
 <div class="form_field">
   <label for="day_large_end">Ending large cups:</label>
@@ -30,10 +34,7 @@
 </div>
 
 
-<div class="form_field">
-  <%= f.number_field :small_end, value: ''  %>
-  <label for="day_small_end">Ending small cups:</label>
-</div>
+
 
 
 <div class="form_field">
@@ -42,14 +43,16 @@
 </div>
 
 <div class="form_field">
+  <%= f.number_field :hot_small_end, value: ''  %>
+  <label for="day_hot_small_end">Ending small hot cups:</label>
+</div>
+
+<div class="form_field">
   <%= f.number_field :hot_medium_end, value: ''  %>
   <label for="day_hot_medium_end">Ending med. hot cups:</label>
 </div>
 
-<div class="form_field">
-  <%= f.number_field :hot_small_end, value: ''  %>
-  <label for="day_hot_small_end">Ending small hot cups:</label>
-</div>
+
 
 <%= f.hidden_field :closed, value: true %>
 <%= f.hidden_field :id %>

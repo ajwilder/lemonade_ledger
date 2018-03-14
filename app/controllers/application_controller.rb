@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
 
     def authenticated
       unless cookies.signed[:authentic] == Admin.first.password_digest
+        if cookies.delete(:authentic)
+          cookies.delete(:authentic)
+        end
         flash[:danger] = "Password required to authenticate this device"
         redirect_to '/login'
       end

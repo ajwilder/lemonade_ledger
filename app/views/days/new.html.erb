@@ -25,6 +25,12 @@
     <%= f.number_field :cash_start, value: number_to_currency(f.object.cash_start.to_f, delimiter: '', unit: ''), step: 0.01 %>
   </div>
 
+  <div class="form_field">
+
+    <%= f.number_field :small_start %>
+    <label for="day_small_start">Starting small cups:</label>
+    <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'small') : '' %>) &nbsp; </span>
+  </div>
 
   <div class="form_field">
     <label for="day_large_start">Starting large cups:</label>
@@ -33,12 +39,7 @@
   </div>
 
 
-  <div class="form_field">
 
-    <%= f.number_field :small_start %>
-    <label for="day_small_start">Starting small cups:</label>
-    <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'small') : '' %>) &nbsp; </span>
-  </div>
 
 
   <div class="form_field">
@@ -47,7 +48,12 @@
     <label for="day_bottle_start">Starting water bottles:</label>
     <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'bottle') : ''  %>) &nbsp;   </span>
   </div>
+  <div class="form_field">
 
+    <%= f.number_field :hot_small_start %>
+    <label for="day_hot_small_start">Starting small hot cups:</label>
+    <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'hot_small') : '' %>) &nbsp;  </span>
+  </div>
   <div class="form_field">
 
     <%= f.number_field :hot_medium_start %>
@@ -55,12 +61,7 @@
     <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'hot_medium') : '' %>) &nbsp;</span>
   </div>
 
-  <div class="form_field">
 
-    <%= f.number_field :hot_small_start %>
-    <label for="day_hot_small_start">Starting small hot cups:</label>
-    <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'hot_small') : '' %>) &nbsp;  </span>
-  </div>
 
   <%= f.submit "Let's start selling" %>
 

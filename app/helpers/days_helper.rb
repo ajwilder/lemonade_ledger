@@ -42,4 +42,10 @@ module DaysHelper
     end
   end
 
+  def sale_time(time)
+    Time.zone = "America/New_York"
+    t = time.in_time_zone
+    t.strftime("%I:%M%p")
+  end
+
 end

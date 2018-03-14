@@ -279,7 +279,7 @@
     <% count = 1 %>
     <% @sales.each do |sale| %>
       <li>
-        <%= count.ordinalize %> sale: <%= (sale.created_at - 5.hours).strftime("%I:%M%p")  %>
+        <%= count.ordinalize %> sale: <%= sale_time(sale.created_at)  %>
           <ul>
             <li>
               $<%= '%.2f' % sale.price %>
