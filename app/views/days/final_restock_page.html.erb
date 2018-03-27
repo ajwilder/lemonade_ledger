@@ -7,14 +7,13 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 <div class="form_field">
-  <label for="day_large_restock">Restock large cups:</label>
-  <%= f.number_field :large_restock, value: 0 %>
-</div>
-
-
-<div class="form_field">
   <%= f.number_field :small_restock, value: 0  %>
   <label for="day_small_restock">Restock small cups:</label>
+</div>
+
+<div class="form_field">
+  <label for="day_large_restock">Restock large cups:</label>
+  <%= f.number_field :large_restock, value: 0 %>
 </div>
 
 
