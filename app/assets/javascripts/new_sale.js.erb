@@ -103,10 +103,13 @@ function calculateChange() {
 var perm_buttons_divs = document.querySelectorAll('.permanent_items');
 var table = document.querySelector('.sale_items')
 var freebie_div = document.querySelector('.freebie_div')
+var multi_div = document.querySelector('.item_div__multi')
+
 perm_buttons_divs.forEach(function(div){
   div.style.top = table.offsetTop + 'px'
 })
 freebie_div.style.top = table.offsetTop + 170 + 'px'
+multi_div.style.top = table.offsetTop + 170 + 'px'
 
 var misc_div = document.querySelector('.item_div__misc');
 var clear_div = document.querySelector('.clear_all_div');
@@ -117,7 +120,7 @@ clear_div.style.right = (window.innerWidth - (parseInt(item_divs[0].offsetLeft) 
 freebie_div.style.right = (window.innerWidth - (parseInt(item_divs[0].offsetLeft) + 160)) +  'px'
 vendor_div.style.right = (window.innerWidth - (parseInt(item_divs[1].offsetLeft) + 160)) +  'px'
 misc_div.style.right = (window.innerWidth - (parseInt(item_divs[2].offsetLeft) + 160)) +  'px'
-
+multi_div.style.right = (window.innerWidth - (parseInt(item_divs[1].offsetLeft) + 160)) +  'px'
 
 // Add misc_item to sale
 var misc_item_buttons = document.querySelectorAll('.misc_item_button');
@@ -197,7 +200,45 @@ function toggleFreebie() {
 
 }
 
+// Add multi_item to sale
+var multi_item_buttons = document.querySelectorAll('.multi_item_button');
+var multi_item_name = document.querySelector('#multi_item_name')
+var multi_item_number = document.querySelector('#multi_item_number')
+multi_item_buttons.forEach(function(button) {
+  button.addEventListener('click', handleMultiItemClick)
+})
 
+
+function handleMultiItemClick() {
+  var itemName = multi_item_name.value
+  var dataDiv = document.querySelector(`[data-name="${itemName}"]`)
+  var quantity = parseInt(multi_item_number.value)
+  var itemPrice = dataDiv.dataset.price
+  var cupType = dataDiv.dataset.cup
+  if(this.dataset.action == "remove") {
+    if (localStorage[itemName]) {
+      var o = localStorage.getItem(itemName)
+      o = JSON.parse(o)
+      o.count -= quantity;
+      if (o.count == 0) {
+        localStorage.removeItem(itemName)
+      } else {
+          localStorage[itemName] = JSON.stringify(o)
+      }
+    }
+  }
+  if (this.dataset.action == "add") {
+    if (localStorage[itemName]) {
+      var o = localStorage.getItem(itemName)
+      o = JSON.parse(o)
+      o.count += quantity;
+      localStorage[itemName] = JSON.stringify(o)
+    } else {
+      localStorage.setItem(itemName, JSON.stringify({'count': quantity, 'price': itemPrice, 'cup_type': cupType.replace(' ','_').toLowerCase(), 'name': itemName}));
+    }
+  }
+  updatePage()
+}
 
 // clear local storage when clear all button clicked
 
