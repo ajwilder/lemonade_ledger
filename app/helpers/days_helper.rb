@@ -7,7 +7,11 @@ module DaysHelper
   end
 
   def day_display(day)
-     day.created_at.strftime("%m/%d").to_s + " " +  day.location
+    if day.date
+      day.date + " " +  day.location
+    else
+      day.created_at.strftime("%m/%d").to_s + " " +  day.location
+    end
   end
 
   def total_sales(day)
