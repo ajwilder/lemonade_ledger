@@ -109,7 +109,7 @@ perm_buttons_divs.forEach(function(div){
   div.style.top = table.offsetTop + 'px'
 })
 freebie_div.style.top = table.offsetTop + 170 + 'px'
-multi_div.style.top = table.offsetTop + 170 + 'px'
+multi_div.style.top = table.offsetTop + 340 + 'px'
 
 var misc_div = document.querySelector('.item_div__misc');
 var clear_div = document.querySelector('.clear_all_div');
@@ -120,7 +120,7 @@ clear_div.style.right = (window.innerWidth - (parseInt(item_divs[0].offsetLeft) 
 freebie_div.style.right = (window.innerWidth - (parseInt(item_divs[0].offsetLeft) + 160)) +  'px'
 vendor_div.style.right = (window.innerWidth - (parseInt(item_divs[1].offsetLeft) + 160)) +  'px'
 misc_div.style.right = (window.innerWidth - (parseInt(item_divs[2].offsetLeft) + 160)) +  'px'
-multi_div.style.right = (window.innerWidth - (parseInt(item_divs[1].offsetLeft) + 160)) +  'px'
+multi_div.style.right = (window.innerWidth - (parseInt(item_divs[0].offsetLeft) + 160)) +  'px'
 
 // Add misc_item to sale
 var misc_item_buttons = document.querySelectorAll('.misc_item_button');
