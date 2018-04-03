@@ -109,7 +109,7 @@ perm_buttons_divs.forEach(function(div){
   div.style.top = table.offsetTop + 'px'
 })
 freebie_div.style.top = table.offsetTop + 170 + 'px'
-// multi_div.style.top = table.offsetTop + 340 + 'px'
+multi_div.style.top = table.offsetTop + 340 + 'px'
 
 var misc_div = document.querySelector('.item_div__misc');
 var clear_div = document.querySelector('.clear_all_div');
@@ -219,7 +219,11 @@ function handleMultiItemClick() {
     if (localStorage[itemName]) {
       var o = localStorage.getItem(itemName)
       o = JSON.parse(o)
-      o.count -= quantity;
+      if ((o.count - quantity) >= 0) {
+        o.count -= quantity;
+      } else {
+        o.count = 0;
+      };
       if (o.count == 0) {
         localStorage.removeItem(itemName)
       } else {
