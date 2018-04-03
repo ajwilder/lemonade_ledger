@@ -43,13 +43,13 @@
   <h4>Freebie</h4>
 </div>
 
-<div class="permanent_items item_div item_div__multi permanent">
+<!-- <div class="permanent_items item_div item_div__multi permanent">
   <h4>Multiple Items</h4>
   <button class="perm_item_button multi_item_button add_item misc_item"  data-action="add">+</button>
   <button class="perm_item_button multi_item_button remove_item clear_all" id="clear_all" data-action="remove">-</button>
   <%= select_tag(:multi_item_name, options_for_select(@items.map { |item| item.name }))%>
   <%= select_tag(:multi_item_number, options_for_select((1..60).to_a)) %>
-</div>
+</div> -->
 
 <%= form_for(@sale) do |f| %>
 <%= f.hidden_field :price, class: 'sale_cups' %>
