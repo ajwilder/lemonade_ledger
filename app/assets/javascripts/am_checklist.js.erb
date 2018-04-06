@@ -45,6 +45,9 @@ function checkChecklist() {
   if (checked){
     document.querySelector('#checklist_submit').classList.remove('hidden')
   } else {
-    document.querySelector('#checklist_submit').classList.add('hidden')
+    if !(Array.from(document.querySelector('#checklist_submit').classList).includes('hidden')) {
+      document.querySelector('#checklist_submit').classList.add('hidden')
+    }    
   }
 }
+console.log(Array.from(document.querySelector('#checklist_submit').classList).includes('hidden'));
