@@ -16,28 +16,28 @@ buttons.forEach(function(button) {
 function handleItemClick() {
   var itemName = this.dataset.name
   var itemPrice
-  if (vendor == false && freebie == false){
+  if (vendor === false && freebie === false){
     itemPrice = this.dataset.price;
-  } else if (vendor == true) {
+  } else if (vendor === true) {
     itemPrice = this.dataset.vendor_price;
     itemName += '(v)'
   } else {
     itemPrice = 0;
     itemName += '(f)'
   }
-  if(this.dataset.action == "remove") {
+  if(this.dataset.action === "remove") {
     if (localStorage[itemName]) {
       var o = localStorage.getItem(itemName)
       o = JSON.parse(o)
       o.count--;
-      if (o.count == 0) {
+      if (o.count === 0) {
         localStorage.removeItem(itemName)
       } else {
           localStorage[itemName] = JSON.stringify(o)
       }
     }
   }
-  if (this.dataset.action == "add") {
+  if (this.dataset.action === "add") {
     if (localStorage[itemName]) {
       var o = localStorage.getItem(itemName)
       o = JSON.parse(o)
@@ -63,7 +63,7 @@ function updatePage() {
     var item = JSON.parse(localStorage.getItem(localStorage.key(i)));
     cup_type = item.cup_type;
     if (cup_type) {
-      cup_field = document.querySelector(`#sale_${cup_type}`);
+      cup_field = document.querySelector('#sale_' + cup_type);
       current_cups = cup_field.value;
     }
     for (var j = 0; j < item.count; j++){
@@ -141,23 +141,23 @@ function handleMiscItemClick() {
   var inputted_name = misc_item_name.value
   if (!inputted_name) inputted_name = '?';
   if (cup_type){
-    itemName = `Misc. $${itemPrice.toFixed(2)} Item (${inputted_name}) w/${cup_type}  ${ cup_type == 'Bottle' ? '' : 'cup'}`;
+    itemName = 'Misc. $' + itemPrice.toFixed(2).toString() + ' Item (' + inputted_name +  'w/' + cup_type + (cup_type === 'Bottle' ? '' : 'cup');
   } else {
-    itemName = `Misc. $${itemPrice.toFixed(2)} Item (${inputted_name})`
+    itemName = 'Misc. $' + itemPrice.toFixed(2).toString() +  'Item (' + inputted_name + ')'
   }
-  if(this.dataset.action == "remove") {
+  if(this.dataset.action === "remove") {
     if (localStorage[itemName]) {
       var o = localStorage.getItem(itemName)
       o = JSON.parse(o)
       o.count--;
-      if (o.count == 0) {
+      if (o.count === 0) {
         localStorage.removeItem(itemName)
       } else {
           localStorage[itemName] = JSON.stringify(o)
       }
     }
   }
-  if (this.dataset.action == "add") {
+  if (this.dataset.action === "add") {
     if (localStorage[itemName]) {
       var o = localStorage.getItem(itemName)
       o = JSON.parse(o)
@@ -173,10 +173,10 @@ function handleMiscItemClick() {
 // toggle the freebie and vender prices
 vendor_div.addEventListener('click', toggleVendor)
 function toggleVendor() {
-  if (vendor == false) {
+  if (vendor === false) {
     vendor = true;
     vendor_div.style.background = 'green';
-    if (freebie == true) {
+    if (freebie === true) {
       toggleFreebie()
     }
   } else {
@@ -187,10 +187,10 @@ function toggleVendor() {
 
 freebie_div.addEventListener('click', toggleFreebie)
 function toggleFreebie() {
-  if (freebie == false) {
+  if (freebie === false) {
     freebie = true;
     freebie_div.style.background = 'green'
-    if (vendor = true) {
+    if (vendor === true) {
       toggleVendor()
     }
   } else {
@@ -211,11 +211,11 @@ multi_item_buttons.forEach(function(button) {
 
 function handleMultiItemClick() {
   var itemName = multi_item_name.value
-  var dataDiv = document.querySelector(`[data-name="${itemName}"]`)
+  var dataDiv = document.querySelector('[data-name="' + itemName + '"]')
   var quantity = parseInt(multi_item_number.value)
   var itemPrice = dataDiv.dataset.price
   var cupType = dataDiv.dataset.cup
-  if(this.dataset.action == "remove") {
+  if(this.dataset.action === "remove") {
     if (localStorage[itemName]) {
       var o = localStorage.getItem(itemName)
       o = JSON.parse(o)
@@ -224,14 +224,14 @@ function handleMultiItemClick() {
       } else {
         o.count = 0;
       };
-      if (o.count == 0) {
+      if (o.count === 0) {
         localStorage.removeItem(itemName)
       } else {
           localStorage[itemName] = JSON.stringify(o)
       }
     }
   }
-  if (this.dataset.action == "add") {
+  if (this.dataset.action === "add") {
     if (localStorage[itemName]) {
       var o = localStorage.getItem(itemName)
       o = JSON.parse(o)
