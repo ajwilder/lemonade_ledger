@@ -1,5 +1,6 @@
 class SalesController < ApplicationController
   before_action :authenticated
+  skip_before_action :verify_authenticity_token, only: [:create]
 
   def new
     @day = current_day

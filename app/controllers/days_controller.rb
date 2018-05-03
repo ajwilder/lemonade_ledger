@@ -44,6 +44,10 @@ class DaysController < ApplicationController
         @day.employees << employee
       end
     end
+    if Day.find_by(location: params[:day][:location], date: params[:day][:date])
+      flash[:danger] = "There is already a ledger open at this location today"
+      redirect_to root_url and return
+    end
     if @day.save
       if !current_day.nil?
         cookies.delete(:day)
