@@ -5,7 +5,7 @@ class SalesController < ApplicationController
   def new
     @day = current_day
     @sale = @day.sales.build
-    @items = Item.where(active: true).order(:drink_type)
+    @items = Item.where(active: true).order(:name).order(:drink_type)
   end
 
   def create
