@@ -7,7 +7,17 @@ class DaysController < ApplicationController
 
   def checklist
     @location = params[:location]
-    @previous_day = Day.find_by(location: @location)
+    if @location == "Market Street" || @location == "Night Market"
+      market_day = Day.find_by(location: "Market Street")
+      night_day = Day.find_by(location: "Night Market")
+      if market_day.created_at > night_day.created_at
+        @previous_day = market_day
+      else
+        @previous_day = night_day
+      end
+    else
+      @previous_day = Day.find_by(location: @location)
+    end
     @day = Day.new
     @employees = Admin.first.employees
     @locations = Admin.first.locations
