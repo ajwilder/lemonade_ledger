@@ -50,7 +50,7 @@ module DaysHelper
       if day["#{item}_restock"]
         item_restock = day["#{item}_restock"]
       else
-        day["#{item}_restock"] = 0
+        item_restock = 0
       end
       return item_end + item_restock
     end
