@@ -42,7 +42,17 @@ module DaysHelper
     if !day.closed?
       return 'n/a'
     else
-      return day["#{item}_end"] + day["#{item}_restock"]
+      if day["#{item}_end"]
+        item_end = day["#{item}_end"]
+      else
+        item_end = 0
+      end
+      if day["#{item}_restock"]
+        item_restock = day["#{item}_restock"]
+      else
+        day["#{item}_restock"] = 0
+      end
+      return item_end + item_restock
     end
   end
 
