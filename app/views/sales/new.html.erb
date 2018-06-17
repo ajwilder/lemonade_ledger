@@ -5,7 +5,7 @@
 <h1><%= (@day.sales.count + 1).ordinalize %> Sale for <%= day_display(@day) %></h1>
 <div>
 
-  <strong>Previous Sale:</strong> <%= sale_time(@last_sale.updated_at.strftime('%l:%M %P'))  %>, <%= @last_sale.items.join(', ') %>
+  <strong>Previous Sale:</strong> <%= sale_time(@last_sale.updated_at.strftime('%l:%M %P'))  %> <%= number_to_currency(@last_sale.price) %>: <%= @last_sale.items.join(', ') %>
 
 </div>
 
