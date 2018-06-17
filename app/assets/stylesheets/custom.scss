@@ -244,6 +244,7 @@ input[type="submit"]:hover {
 // Summary styles
 .summary_table {
   width: 40em;
+  max-width: 95vw;
   text-align: left;
   border: 1px solid darkgrey;
   margin-bottom: 1em;
@@ -255,6 +256,9 @@ input[type="submit"]:hover {
 @media (max-width:600px) {
   .summary_table {
     max-width: 95vw;
+  }
+  .big_table {
+    font-size: 0.8em;
   }
 }
 
