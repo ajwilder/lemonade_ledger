@@ -252,6 +252,12 @@ input[type="submit"]:hover {
   }
 }
 
+@media (max-width:600px) {
+  .summary_table {
+    max-width: 95vw;
+  }
+}
+
 // admin page styles
 .admin {
   h3 {

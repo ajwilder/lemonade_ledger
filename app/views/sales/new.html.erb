@@ -3,6 +3,11 @@
 
 
 <h1><%= (@day.sales.count + 1).ordinalize %> Sale for <%= day_display(@day) %></h1>
+<div>
+
+  <strong>Previous Sale:</strong> <%= sale_time(@last_sale.updated_at.strftime('%l:%M %P'))  %>, <%= @last_sale.items.join(', ') %>
+
+</div>
 
 <div class="items">
   <% @items.each do |item| %>
@@ -78,6 +83,7 @@
   </div>
   <%= f.submit 'Complete Sale', id: 'sale_submit' %>
   <% end %>
+
 </div>
 
 
