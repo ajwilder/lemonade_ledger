@@ -1,6 +1,8 @@
 class DaysController < ApplicationController
   before_action :authenticated
   before_action :admin_authenticate, only: [:summary, :edit, :update]
+  skip_before_action :verify_authenticity_token, only: [:checklist, :am_checklist, :close_day, :final_restock, :close]
+
 
   def new
   end

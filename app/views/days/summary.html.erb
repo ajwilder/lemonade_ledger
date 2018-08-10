@@ -89,30 +89,6 @@
 
 </table>
 
-<table class="summary_table">
-  <tr>
-    <th>
-      Item
-    </th>
-    <th>
-      No. Sold
-    </th>
-  </tr>
-  <% @item_sales.sort_by{ |k, v| k }.to_h.each do |item| %>
-    <tr>
-      <td>
-        <%= item[0] %>
-      </td>
-      <td>
-        <%= item[1] %>
-      </td>
-    </tr>
-  <% end %>
-
-
-</table>
-
-
 
 <table class="summary_table big_table">
   <tr>
@@ -272,6 +248,30 @@
     </td>
   </tr>
 </table>
+
+<table class="summary_table">
+  <tr>
+    <th>
+      Item
+    </th>
+    <th>
+      No. Sold
+    </th>
+  </tr>
+  <% @item_sales.sort_by{ |k, v| k }.to_h.each do |item| %>
+    <tr>
+      <td>
+        <%= item[0] %>
+      </td>
+      <td>
+        <%= item[1] %>
+      </td>
+    </tr>
+  <% end %>
+
+
+</table>
+
 
 <div class="summary_sales">
   <h2>All Sales</h2>
