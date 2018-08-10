@@ -12,7 +12,7 @@
 <% end %>
 
 <div class="home_button">
-  <%= button_to "Leave Note for Desiree", leave_note_day_path(@day), method: :get %>
+  <%= button_to "Leave Note for Desiree / Cash Expense", leave_note_day_path(@day), method: :get %>
 </div>
 
 <% if session[:admin] == Admin.first.password_digest %>
