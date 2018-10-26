@@ -12,10 +12,14 @@ class DaysController < ApplicationController
     if @location == "Market Street" || @location == "Night Market"
       market_day = Day.find_by(location: "Market Street")
       night_day = Day.find_by(location: "Night Market")
-      if market_day.created_at > night_day.created_at
-        @previous_day = market_day
+      if night_day
+        if market_day.created_at > night_day.created_at
+          @previous_day = market_day
+        else
+          @previous_day = night_day
+        end
       else
-        @previous_day = night_day
+        @previous_day = market_day
       end
     else
       @previous_day = Day.find_by(location: @location)
