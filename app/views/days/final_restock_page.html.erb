@@ -39,3 +39,219 @@
 
 
 <% end %>
+
+<div>
+  <h2>Day summary</h2>
+
+  <table class="summary_table">
+    <tr>
+      <td>
+        Transactions
+      </td>
+      <td>
+        <%= @day.sales.count %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Total Sales
+      </td>
+      <td>
+        $<%= total_sales(@day) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Cash Start
+      </td>
+      <td>
+        $<%= @day.cash_start %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Cash End
+      </td>
+      <td>
+        $<%= @day.closed? ? @day.cash_end : ' n/a' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Total Cash collected
+      </td>
+      <td>
+        $<%= @day.closed? ? cash_received(@day) : ' n/a' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Discrepancy
+      </td>
+      <td>
+        $<%= @day.closed? ? cash_discrepancy(@day) : ' n/a' %>
+      </td>
+    </tr>
+
+  </table>
+
+
+  <table class="summary_table big_table">
+    <tr>
+      <th>
+        Inventory Item
+      </th>
+      <th>
+        Start Count
+      </th>
+      <th>
+        Emer. Restock
+      </th>
+      <th>
+        Sold
+      </th>
+      <th>
+        End Count
+      </th>
+      <th>
+        Discre.
+      </th>
+      <th>
+        Restock
+      </th>
+      <th>
+        Tom. Count
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Small Cups
+      </td>
+      <td>
+        <%= @day.small_start %>
+      </td>
+      <td>
+        <%= @day.small_emergency_restock %>
+      </td>
+      <td>
+         <%= inventory_used(@day, 'small') %>
+      </td>
+      <td>
+        <%= @day.closed? ? @day.small_end : 'n/a' %>
+      </td>
+      <td>
+        <%= inventory_discrepancy(@day, 'small') %>
+      </td>
+      <td>
+        <%= @day.closed? ? @day.small_restock : 'n/a' %>
+      </td>
+      <td>
+        <%= tommorrow_count(@day, 'small') %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Large Cups
+      </td>
+      <td>
+        <%= @day.large_start %>
+      </td>
+      <td>
+        <%= @day.large_emergency_restock %>
+      </td>
+      <td>
+        <%= inventory_used(@day, 'large') %>
+      </td>
+      <td>
+        <%= @day.closed? ? @day.large_end : 'n/a' %>
+      </td>
+      <td>
+        <%= inventory_discrepancy(@day, 'large') %>
+      </td>
+      <td>
+        <%= @day.closed? ? @day.large_restock : 'n/a' %>
+      </td>
+      <td>
+        <%= tommorrow_count(@day, 'large') %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Water Bottles
+      </td>
+      <td>
+        <%= @day.bottle_start %>
+      </td>
+      <td>
+        <%= @day.bottle_emergency_restock %>
+      </td>
+      <td>
+        <%= inventory_used(@day, 'bottle') %>
+      </td>
+      <td>
+        <%= @day.closed? ? @day.bottle_end : 'n/a' %>
+      </td>
+      <td>
+        <%= inventory_discrepancy(@day, 'bottle') %>
+      </td>
+      <td>
+        <%= @day.closed? ? @day.bottle_restock : 'n/a' %>
+      </td>
+      <td>
+        <%= tommorrow_count(@day, 'bottle') %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Small Hot Cups
+      </td>
+      <td>
+        <%= @day.hot_small_start %>
+      </td>
+      <td>
+        <%= @day.hot_small_emergency_restock %>
+      </td>
+      <td>
+        <%= inventory_used(@day, 'hot_small') %>
+      </td>
+      <td>
+         <%= @day.closed? ? @day.hot_small_end : 'n/a' %>
+      </td>
+      <td>
+        <%= inventory_discrepancy(@day, 'hot_small') %>
+      </td>
+      <td>
+        <%= @day.closed? ? @day.hot_small_restock : 'n/a' %>
+      </td>
+      <td>
+        <%= tommorrow_count(@day, 'hot_small') %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Medium Hot Cups
+      </td>
+      <td>
+        <%= @day.hot_medium_start %>
+      </td>
+      <td>
+        <%= @day.hot_medium_emergency_restock %>
+      </td>
+      <td>
+       <%= inventory_used(@day, 'hot_medium') %>
+      </td>
+      <td>
+          <%= @day.closed? ? @day.hot_medium_end : 'n/a' %>
+      </td>
+      <td>
+        <%= inventory_discrepancy(@day, 'hot_medium') %>
+      </td>
+      <td>
+        <%= @day.closed? ? @day.hot_medium_restock : 'n/a'  %>
+      </td>
+      <td>
+        <%= tommorrow_count(@day, 'hot_medium') %>
+      </td>
+    </tr>
+  </table>
+</div>

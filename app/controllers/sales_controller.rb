@@ -4,7 +4,7 @@ class SalesController < ApplicationController
 
   def new
     @day = current_day
-    @last_sale = @day.sales.last
+    @last_sales = @day.sales.order('created_at desc').take(3)
     @sale = @day.sales.build
 
     @items = Item.where(active: true).order(:drink_type).order(:name)
