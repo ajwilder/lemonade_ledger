@@ -118,6 +118,8 @@ class DaysController < ApplicationController
         end
       end
     end
+    @previous_day = @day.previous_day
+
   end
 
   def emergency_restock_page
@@ -232,7 +234,7 @@ class DaysController < ApplicationController
     end
 
     def final_restock_params
-      params.require(:day).permit(:large_restock, :closed, :small_restock, :bottle_restock, :hot_medium_restock, :hot_small_restock)
+      params.require(:day).permit(:large_restock, :small_restock, :bottle_restock, :hot_medium_restock, :hot_small_restock)
     end
 
     def emergency_restock_params
@@ -240,7 +242,7 @@ class DaysController < ApplicationController
     end
 
     def close_day_params
-      params.require(:day).permit(:cash_end, :large_end, :small_end, :bottle_end, :hot_medium_end, :hot_small_end)
+      params.require(:day).permit(:cash_end, :large_end, :closed,:small_end, :bottle_end, :hot_medium_end, :hot_small_end)
     end
 
 end

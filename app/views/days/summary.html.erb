@@ -96,6 +96,9 @@
       Inventory Item
     </th>
     <th>
+      Prev. Day End
+    </th>
+    <th>
       Start Count
     </th>
     <th>
@@ -120,6 +123,9 @@
   <tr>
     <td>
       Small Cups
+    </td>
+    <td>
+      <%=  @previous_day.small_end if @previous_day   %>
     </td>
     <td>
       <%= @day.small_start %>
@@ -148,6 +154,9 @@
       Large Cups
     </td>
     <td>
+      <%= @previous_day.large_end  if @previous_day%>
+    </td>
+    <td>
       <%= @day.large_start %>
     </td>
     <td>
@@ -172,6 +181,9 @@
   <tr>
     <td>
       Water Bottles
+    </td>
+    <td>
+      <%= @previous_day.bottle_end  if @previous_day %>
     </td>
     <td>
       <%= @day.bottle_start %>
@@ -200,6 +212,9 @@
       Small Hot Cups
     </td>
     <td>
+      <%= @previous_day.hot_small_end  if @previous_day %>
+    </td>
+    <td>
       <%= @day.hot_small_start %>
     </td>
     <td>
@@ -224,6 +239,9 @@
   <tr>
     <td>
       Medium Hot Cups
+    </td>
+    <td>
+      <%= @previous_day.hot_medium_end  if @previous_day%>
     </td>
     <td>
       <%= @day.hot_medium_start %>

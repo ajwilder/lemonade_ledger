@@ -20,6 +20,7 @@ class AdminMailer < ApplicationMailer
   def close_day(day)
     @day = day
     @greeting = "Hi"
+    @previous_day = @day.previous_day
 
     mail to: "Drinklowcountrylemonade@gmail.com"
   end
