@@ -125,7 +125,7 @@
       Small Cups
     </td>
     <td>
-      <%=  @previous_day.small_end if @previous_day   %>
+      <%= tommorrow_count(@previous_day, 'small') if @previous_day   %>
     </td>
     <td>
       <%= @day.small_start %>
@@ -154,7 +154,7 @@
       Large Cups
     </td>
     <td>
-      <%= @previous_day.large_end  if @previous_day%>
+      <%= tommorrow_count(@previous_day, 'large')  if @previous_day%>
     </td>
     <td>
       <%= @day.large_start %>
@@ -183,7 +183,7 @@
       Water Bottles
     </td>
     <td>
-      <%= @previous_day.bottle_end  if @previous_day %>
+      <%= tommorrow_count(@previous_day, 'bottle')  if @previous_day %>
     </td>
     <td>
       <%= @day.bottle_start %>
@@ -212,7 +212,7 @@
       Small Hot Cups
     </td>
     <td>
-      <%= @previous_day.hot_small_end  if @previous_day %>
+      <%= tommorrow_count(@previous_day, 'hot small')  if @previous_day %>
     </td>
     <td>
       <%= @day.hot_small_start %>
@@ -241,7 +241,7 @@
       Medium Hot Cups
     </td>
     <td>
-      <%= @previous_day.hot_medium_end  if @previous_day%>
+      <%= tommorrow_count(@previous_day, 'hot medium')  if @previous_day%>
     </td>
     <td>
       <%= @day.hot_medium_start %>
