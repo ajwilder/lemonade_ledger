@@ -38,27 +38,40 @@
     <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'large') : '' %>) &nbsp; </span>
   </div>
 
-
-
-
-
   <div class="form_field">
-
     <%= f.number_field :bottle_start %>
     <label for="day_bottle_start">Starting water bottles:</label>
     <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'bottle') : ''  %>) &nbsp;   </span>
   </div>
-  <div class="form_field">
 
+  <div class="form_field">
     <%= f.number_field :hot_small_start %>
     <label for="day_hot_small_start">Starting small hot cups:</label>
     <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'hot_small') : '' %>) &nbsp;  </span>
   </div>
-  <div class="form_field">
 
+  <div class="form_field">
     <%= f.number_field :hot_medium_start %>
     <label for="day_hot_medium_start">Starting med. hot cups:</label>
     <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'hot_medium') : '' %>) &nbsp;</span>
+  </div>
+
+  <div class="form_field">
+    <%= f.number_field :reusable_straw_start %>
+    <label for="day_hot_medium_start">Starting reusable straws:</label>
+    <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'reusable_straw') : '' %>) &nbsp;</span>
+  </div>
+
+  <div class="form_field">
+    <%= f.number_field :reusable_straw_bag_start %>
+    <label for="day_hot_medium_start">Starting reusable straws with bags:</label>
+    <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'reusable_straw_bag') : '' %>) &nbsp;</span>
+  </div>
+
+  <div class="form_field">
+    <%= f.number_field :donut_start %>
+    <label for="day_hot_medium_start">Starting donuts:</label>
+    <span class="float_left">(<%= @previous_day ? tommorrow_count(@previous_day, 'donut') : '' %>) &nbsp;</span>
   </div>
 
 

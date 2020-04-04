@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200404143440) do
+ActiveRecord::Schema.define(version: 20200404150544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,9 @@ ActiveRecord::Schema.define(version: 20200404143440) do
     t.integer "donut_end", default: 0
     t.integer "donut_discrepancy", default: 0
     t.integer "donut_restock", default: 0
+    t.integer "reusable_straw_emergency_restock", default: 0
+    t.integer "reusable_straw_bag_emergency_restock", default: 0
+    t.integer "donut_emergency_restock", default: 0
     t.index ["location", "date"], name: "index_days_on_location_and_date", unique: true
   end
 

@@ -241,7 +241,7 @@
       Medium Hot Cups
     </td>
     <td>
-      <%= tommorrow_count(@previous_day, 'hot medium')  if @previous_day%>
+      <%= tommorrow_count(@previous_day, 'hot_medium')  if @previous_day%>
     </td>
     <td>
       <%= @day.hot_medium_start %>
@@ -270,28 +270,87 @@
       Reusable Straws
     </td>
     <td>
-      <%= tommorrow_count(@previous_day, 'hot medium')  if @previous_day%>
+      <%= tommorrow_count(@previous_day, 'reusable_straw')  if @previous_day%>
     </td>
     <td>
-      <%= @day.hot_medium_start %>
+      <%= @day.reusable_straw_start %>
     </td>
     <td>
-      <%= @day.hot_medium_emergency_restock %>
+      <%= @day.reusable_straw_emergency_restock %>
     </td>
     <td>
-     <%= inventory_used(@day, 'hot_medium') %>
+     <%= inventory_used(@day, 'reusable_straw') %>
     </td>
     <td>
-        <%= @day.closed? ? @day.hot_medium_end : 'n/a' %>
+        <%= @day.closed? ? @day.reusable_straw_end : 'n/a' %>
     </td>
     <td>
-      <%= inventory_discrepancy(@day, 'hot_medium') %>
+      <%= inventory_discrepancy(@day, 'reusable_straw') %>
+    </td>
+    <td>
+      <%= @day.closed? ? @day.reusable_straw_restock : 'n/a'  %>
+    </td>
+    <td>
+      <%= tommorrow_count(@day, 'reusable_straw') %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Reusable Straws with Bag
+    </td>
+    <td>
+      <%= tommorrow_count(@previous_day, 'reusable_straw_bag')  if @previous_day%>
+    </td>
+    <td>
+      <%= @day.reusable_straw_bag_start %>
+    </td>
+    <td>
+      <%= @day.reusable_straw_bag_emergency_restock %>
+
+    </td>
+    <td>
+     <%= inventory_used(@day, 'reusable_straw_bag') %>
+    </td>
+    <td>
+        <%= @day.closed? ? @day.reusable_straw_bag_end : 'n/a' %>
+    </td>
+    <td>
+      <%= inventory_discrepancy(@day, 'reusable_straw_bag') %>
+    </td>
+    <td>
+      <%= @day.closed? ? @day.reusable_straw_bag_restock : 'n/a'  %>
+    </td>
+    <td>
+      <%= tommorrow_count(@day, 'reusable_straw_bag') %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Reusable Straws
+    </td>
+    <td>
+      <%= tommorrow_count(@previous_day, 'donut')  if @previous_day%>
+    </td>
+    <td>
+      <%= @day.donut_start %>
+    </td>
+    <td>
+      <%= @day.donut_emergency_restock %>
+    </td>
+    <td>
+     <%= inventory_used(@day, 'donut') %>
+    </td>
+    <td>
+        <%= @day.closed? ? @day.donut_end : 'n/a' %>
+    </td>
+    <td>
+      <%= inventory_discrepancy(@day, 'donut') %>
     </td>
     <td>
       <%= @day.closed? ? @day.hot_medium_restock : 'n/a'  %>
     </td>
     <td>
-      <%= tommorrow_count(@day, 'hot_medium') %>
+      <%= tommorrow_count(@day, 'donut') %>
     </td>
   </tr>
 </table>

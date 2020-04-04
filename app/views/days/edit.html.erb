@@ -34,5 +34,20 @@
     <label for="day_hot_small_start">Starting small hot cups:</label>
   </div>
 
+  <div class="form_field">
+    <%= f.number_field :reusable_straw_start %>
+    <label for="day_hot_small_start">Starting reusable straws:</label>
+  </div>
+
+  <div class="form_field">
+    <%= f.number_field :reusable_straw_bag_start %>
+    <label for="day_hot_small_start">Starting reusable straws with bags:</label>
+  </div>
+
+  <div class="form_field">
+    <%= f.number_field :donut_start %>
+    <label for="day_hot_small_start">Starting donuts:</label>
+  </div>
+
   <%= f.submit "Update" %>
 <% end %>

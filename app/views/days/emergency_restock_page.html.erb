@@ -33,6 +33,19 @@
   <label for="day_hot_small_emergency_restock">Restock small hot cups:</label>
 </div>
 
+<div class="form_field">
+  <%= f.number_field :reusable_straw_emergency_restock, value: 0  %>
+  <label for="day_hot_small_emergency_restock">Restock reusable straws:</label>
+</div>
+<div class="form_field">
+  <%= f.number_field :reusable_straw_bag_emergency_restock, value: 0  %>
+  <label for="day_hot_small_emergency_restock">Restock reusable straws with bags:</label>
+</div>
+<div class="form_field">
+  <%= f.number_field :donut_emergency_restock, value: 0  %>
+  <label for="day_hot_small_emergency_restock">Restock donuts:</label>
+</div>
+
 <%= f.submit "Update Ledger" %>
 
 
