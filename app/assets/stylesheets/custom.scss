@@ -2,6 +2,7 @@ $lemonade: #fcf37b;
 $hot: #cecb9f;
 $tea: lightpink;
 $water: #d1faff;
+$other: lightgrey;
 $permanent: #ffd891;
 $add_item: #d6f9c7;
 $remove_item: #f9dbc7;
@@ -147,6 +148,10 @@ input[type="submit"]:hover {
 .tea {
   background-color: $tea;
 }
+.other {
+  background-color: $other;
+}
+
 
 .item_div {
   vertical-align: top;

@@ -265,6 +265,35 @@
       <%= tommorrow_count(@day, 'hot_medium') %>
     </td>
   </tr>
+  <tr>
+    <td>
+      Reusable Straws
+    </td>
+    <td>
+      <%= tommorrow_count(@previous_day, 'hot medium')  if @previous_day%>
+    </td>
+    <td>
+      <%= @day.hot_medium_start %>
+    </td>
+    <td>
+      <%= @day.hot_medium_emergency_restock %>
+    </td>
+    <td>
+     <%= inventory_used(@day, 'hot_medium') %>
+    </td>
+    <td>
+        <%= @day.closed? ? @day.hot_medium_end : 'n/a' %>
+    </td>
+    <td>
+      <%= inventory_discrepancy(@day, 'hot_medium') %>
+    </td>
+    <td>
+      <%= @day.closed? ? @day.hot_medium_restock : 'n/a'  %>
+    </td>
+    <td>
+      <%= tommorrow_count(@day, 'hot_medium') %>
+    </td>
+  </tr>
 </table>
 
 <table class="summary_table">

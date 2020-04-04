@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180218163523) do
+ActiveRecord::Schema.define(version: 20200404143440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20180218163523) do
     t.integer "hot_small_invent"
     t.integer "hot_medium_invent"
     t.integer "bottles_invent"
+    t.integer "donut_invent"
+    t.integer "reusable_straw_invent"
+    t.integer "reusable_straw_bag_invent"
   end
 
   create_table "days", force: :cascade do |t|
@@ -67,6 +70,18 @@ ActiveRecord::Schema.define(version: 20180218163523) do
     t.integer "bottle_emergency_restock", default: 0
     t.text "notes", default: [], array: true
     t.string "date"
+    t.integer "reusable_straw_start", default: 0
+    t.integer "reusable_straw_end", default: 0
+    t.integer "reusable_straw_discrepancy", default: 0
+    t.integer "reusable_straw_restock", default: 0
+    t.integer "reusable_straw_bag_start", default: 0
+    t.integer "reusable_straw_bag_end", default: 0
+    t.integer "reusable_straw_bag_discrepancy", default: 0
+    t.integer "reusable_straw_bag_restock", default: 0
+    t.integer "donut_start", default: 0
+    t.integer "donut_end", default: 0
+    t.integer "donut_discrepancy", default: 0
+    t.integer "donut_restock", default: 0
     t.index ["location", "date"], name: "index_days_on_location_and_date", unique: true
   end
 
@@ -91,6 +106,9 @@ ActiveRecord::Schema.define(version: 20180218163523) do
     t.bigint "day_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "donut"
+    t.integer "reusable_straw"
+    t.integer "reusable_straw_bag"
     t.index ["day_id"], name: "index_sales_on_day_id"
   end
 
