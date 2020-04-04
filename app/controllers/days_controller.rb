@@ -71,10 +71,10 @@ class DaysController < ApplicationController
       cookies.signed[:day] = { value:
         @day.id, expires: 16.hours.from_now }
       AdminMailer.new_day(@day).deliver_now
-      days = Day.where('created_at < ?', 10.day.ago)
-      days.each do |d|
-        d.destroy
-      end
+      # days = Day.where('created_at < ?', 10.day.ago)
+      # days.each do |d|
+      #   d.destroy
+      # end
       redirect_to @day
     else
       @employees = Admin.first.employees
