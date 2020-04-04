@@ -88,7 +88,7 @@ class AdminController < ApplicationController
 
   def inventory
     @admin = Admin.first
-    if @admin.update_attributes(small_invent: params[:small], large_invent: params[:large], hot_small_invent: params[:hot_small], hot_medium_invent: params[:hot_medium], bottles_invent: params[:bottle])
+    if @admin.update_attributes(small_invent: params[:small], large_invent: params[:large], hot_small_invent: params[:hot_small], hot_medium_invent: params[:hot_medium], bottles_invent: params[:bottle], reusable_straw_bag_invent: params[:reusable_straw_bag], reusable_straw_invent: params[:reusable_straw], donut_invent: params[:donut])
       flash[:info] = "Inventory updated"
       redirect_to '/admin'
     else

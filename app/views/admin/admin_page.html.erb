@@ -53,6 +53,30 @@
             <%= number_field_tag :bottle, @admin.bottles_invent, class: 'admin_inventory' %>
           </td>
         </tr>
+        <tr>
+          <td>
+            Reusable Straws
+          </td>
+          <td>
+            <%= number_field_tag :reusable_straw, @admin.reusable_straw_invent, class: 'admin_inventory' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Reusable Straws with bags
+          </td>
+          <td>
+            <%= number_field_tag :reusable_straw_bag, @admin.reusable_straw_bag_invent, class: 'admin_inventory' %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Donuts
+          </td>
+          <td>
+            <%= number_field_tag :donut, @admin.donut_invent, class: 'admin_inventory' %>
+          </td>
+        </tr>
       </table>
 
       <%= submit_tag "Update Inventory" %>
