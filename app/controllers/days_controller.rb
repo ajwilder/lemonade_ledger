@@ -136,7 +136,10 @@ class DaysController < ApplicationController
         large_invent: @admin.large_invent - params[:day][:large_emergency_restock].to_i,
         hot_small_invent: @admin.hot_small_invent - params[:day][:hot_small_emergency_restock].to_i,
         hot_medium_invent: @admin.hot_medium_invent - params[:day][:hot_medium_emergency_restock].to_i,
-        bottles_invent: @admin.bottles_invent - params[:day][:bottle_emergency_restock].to_i
+        bottles_invent: @admin.bottles_invent - params[:day][:bottle_emergency_restock].to_i,
+        donut_invent: @admin.donut_invent - params[:day][:donut_restock].to_i
+        reusable_straw_invent: @admin.reusable_straw_invent - params[:day][:reusable_straw_restock].to_i
+        reusable_straw_bag_invent: @admin.reusable_straw_bag_invent - params[:day][:reusable_straw_bag_restock].to_i
       )
       redirect_to @day
     else
@@ -185,6 +188,9 @@ class DaysController < ApplicationController
         hot_small_invent: @admin.hot_small_invent - params[:day][:hot_small_restock].to_i,
         hot_medium_invent: @admin.hot_medium_invent - params[:day][:hot_medium_restock].to_i,
         bottles_invent: @admin.bottles_invent - params[:day][:bottle_restock].to_i
+        donut_invent: @admin.donut_invent - params[:day][:donut_restock].to_i
+        reusable_straw_invent: @admin.reusable_straw_invent - params[:day][:reusable_straw_restock].to_i
+        reusable_straw_bag_invent: @admin.reusable_straw_bag_invent - params[:day][:reusable_straw_bag_restock].to_i
       )
       cookies.delete(:day)
       AdminMailer.close_day(@day).deliver_now
@@ -226,23 +232,23 @@ class DaysController < ApplicationController
   private
 
     def new_day_params
-      params.require(:day).permit(:cash_start, :location, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start, :date)
+      params.require(:day).permit(:cash_start, :location, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start, :reusable_straw_start,:reusable_straw_bag_start,:donut_start, :date)
     end
 
     def update_day_params
-      params.require(:day).permit(:cash_start, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start)
+      params.require(:day).permit(:cash_start, :large_start, :small_start, :bottle_start, :hot_medium_start, :hot_small_start, :reusable_straw_start,:reusable_straw_bag_start,:donut_start)
     end
 
     def final_restock_params
-      params.require(:day).permit(:large_restock, :small_restock, :bottle_restock, :hot_medium_restock, :hot_small_restock)
+      params.require(:day).permit(:large_restock, :small_restock, :bottle_restock, :hot_medium_restock, :hot_small_restock, :reusable_straw_restock,:reusable_straw_bag_restock,:donut_restock)
     end
 
     def emergency_restock_params
-      params.require(:day).permit(:large_emergency_restock, :small_emergency_restock, :bottle_emergency_restock, :hot_medium_emergency_restock, :hot_small_emergency_restock)
+      params.require(:day).permit(:large_emergency_restock, :small_emergency_restock, :bottle_emergency_restock, :hot_medium_emergency_restock, :hot_small_emergency_restock, :reusable_straw_emergency_restock,:reusable_emergency_straw_bag_restock,:donut_emergency_restock)
     end
 
     def close_day_params
-      params.require(:day).permit(:cash_end, :large_end, :closed,:small_end, :bottle_end, :hot_medium_end, :hot_small_end)
+      params.require(:day).permit(:cash_end, :large_end, :closed,:small_end, :bottle_end, :hot_medium_end, :hot_small_end, :reusable_straw_end,:reusable_straw_bag_end,:donut_end)
     end
 
 end

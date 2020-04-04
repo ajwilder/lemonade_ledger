@@ -28,6 +28,6 @@ class SalesController < ApplicationController
   private
 
     def sale_params
-      params.require(:sale).permit(:hot_small, :hot_medium, :bottle, :large, :price, :small)
+      params.require(:sale).permit(:hot_small, :hot_medium, :bottle, :large, :price, :small, :reusable_straw, :reusable_straw_bag, :donut)
     end
 end
