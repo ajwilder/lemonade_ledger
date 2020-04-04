@@ -137,8 +137,8 @@ class DaysController < ApplicationController
         hot_small_invent: @admin.hot_small_invent - params[:day][:hot_small_emergency_restock].to_i,
         hot_medium_invent: @admin.hot_medium_invent - params[:day][:hot_medium_emergency_restock].to_i,
         bottles_invent: @admin.bottles_invent - params[:day][:bottle_emergency_restock].to_i,
-        donut_invent: @admin.donut_invent - params[:day][:donut_restock].to_i
-        reusable_straw_invent: @admin.reusable_straw_invent - params[:day][:reusable_straw_restock].to_i
+        donut_invent: @admin.donut_invent - params[:day][:donut_restock].to_i,
+        reusable_straw_invent: @admin.reusable_straw_invent - params[:day][:reusable_straw_restock].to_i,
         reusable_straw_bag_invent: @admin.reusable_straw_bag_invent - params[:day][:reusable_straw_bag_restock].to_i
       )
       redirect_to @day
@@ -187,10 +187,10 @@ class DaysController < ApplicationController
         large_invent: @admin.large_invent - params[:day][:large_restock].to_i,
         hot_small_invent: @admin.hot_small_invent - params[:day][:hot_small_restock].to_i,
         hot_medium_invent: @admin.hot_medium_invent - params[:day][:hot_medium_restock].to_i,
-        bottles_invent: @admin.bottles_invent - params[:day][:bottle_restock].to_i
-        donut_invent: @admin.donut_invent - params[:day][:donut_restock].to_i
-        reusable_straw_invent: @admin.reusable_straw_invent - params[:day][:reusable_straw_restock].to_i
-        reusable_straw_bag_invent: @admin.reusable_straw_bag_invent - params[:day][:reusable_straw_bag_restock].to_i
+        bottles_invent: @admin.bottles_invent - params[:day][:bottle_restock].to_i,
+        donut_invent: @admin.donut_invent - params[:day][:donut_restock].to_i,
+        reusable_straw_invent: @admin.reusable_straw_invent - params[:day][:reusable_straw_restock].to_i,
+        reusable_straw_bag_invent: @admin.reusable_straw_bag_invent - params[:day][:reusable_straw_bag_restock].to_i,
       )
       cookies.delete(:day)
       AdminMailer.close_day(@day).deliver_now
